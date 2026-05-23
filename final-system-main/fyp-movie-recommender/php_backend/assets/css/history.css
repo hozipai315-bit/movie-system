@@ -1,0 +1,139 @@
+/* history.css - Premium Neural Archives */
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* --- History Cards --- */
+.history-item.animate-reveal {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.history-card {
+    background: var(--bg-card);
+    border: var(--border-thin) !important;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.history-card:hover {
+    border-color: var(--accent-red) !important;
+    background: #0c0c0c;
+    transform: translateX(5px);
+}
+
+.history-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--maroon);
+    transition: background 0.3s;
+}
+
+.history-card:hover::before {
+    background: var(--accent-red);
+}
+
+/* Archive ID Label */
+.archive-id {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+p.text-muted, .text-muted {
+    color: var(--text-white) !important;
+    opacity: 0.9 !important;
+}
+
+/* Mood Icon Display */
+.mood-icon-premium {
+    font-size: 2rem;
+    color: var(--accent-red);
+    margin-right: 20px;
+}
+
+/* Badge Styles */
+.badge-tech {
+    background: transparent;
+    border: 1px solid var(--maroon);
+    color: var(--accent-red);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+/* Filter Dropdown */
+.btn-filter {
+    background: transparent;
+    border: 1px solid var(--text-white);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 8px 18px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.dropdown-menu-dark {
+    background-color: var(--bg-card);
+    border: var(--border-thin);
+    border-radius: 2px;
+    z-index: 1021;
+}
+
+.dropdown-item-tech {
+    color: var(--text-white);
+    opacity: 0.7;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+}
+
+.dropdown-item-tech:hover, .dropdown-item-tech.active {
+    background-color: var(--maroon);
+    color: var(--accent-red);
+}
+
+/* Empty State */
+.empty-archive {
+    padding: 80px 0;
+    text-align: center;
+    border: var(--border-thin);
+    border-radius: 4px;
+    background: #050505;
+}
+
+/* Force visibility */
+.text-white { color: var(--text-white) !important; opacity: 1 !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-card .card-body {
+        gap: 15px;
+    }
+}

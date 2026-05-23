@@ -1,0 +1,137 @@
+/* login.css - Premium Tech Red Theme for Login Page */
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Background grid effect (matching hero visual) */
+body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: repeating-linear-gradient(
+        0deg,
+        #050505,
+        #050505 1px,
+        transparent 1px,
+        transparent 60px
+    ), repeating-linear-gradient(
+        90deg,
+        #050505,
+        #050505 1px,
+        transparent 1px,
+        transparent 60px
+    );
+    z-index: -1;
+    transform: rotate(15deg);
+    opacity: 0.5;
+}
+
+/* --- Premium Login Card --- */
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    background: var(--bg-card);
+    border: var(--border-thin);
+    border-radius: 4px;
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-red);
+}
+
+/* --- Typography --- */
+.logo-text {
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+.logo-text span {
+    color: var(--accent-red);
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Override Browser Autofill Styles */
+.input-group-premium .form-control:-webkit-autofill,
+.input-group-premium .form-control:-webkit-autofill:hover, 
+.input-group-premium .form-control:-webkit-autofill:focus, 
+.input-group-premium .form-control:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #0c0c0c inset !important;
+    -webkit-text-fill-color: var(--text-white) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.btn-premium {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* --- Links --- */
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.auth-link {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.auth-link:hover {
+    color: var(--text-white);
+}
+
+/* --- Alerts --- */
+.alert {
+    border-radius: 2px;
+    font-size: 0.85rem;
+    border: none;
+}
+
+.alert-danger {
+    background: rgba(255, 0, 0, 0.1);
+    color: var(--text-error);
+    border-left: 3px solid var(--accent-red);
+}
+
+.alert-success {
+    background: rgba(0, 255, 0, 0.1);
+    color: var(--text-success);
+    border-left: 3px solid var(--text-success);
+}

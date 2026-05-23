@@ -1,0 +1,406 @@
+/* recommendation.css - Premium Neural Synthesis Output */
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* --- Hero Section (Synced with Index/Dashboard) --- */
+.hero-section {
+    padding: 40px 0;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.hero-card {
+    background-color: var(--accent-red);
+    border-radius: 50px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(255, 0, 0, 0.25);
+    border: 2px solid transparent;
+}
+
+.hero-card:hover {
+    background-color: var(--bg-black);
+    border-color: var(--accent-red);
+    box-shadow: 0 25px 50px -12px rgba(255, 0, 0, 0.5);
+}
+
+.hero-title-text {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+.hero-lead {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.hero-card:hover .hero-lead {
+    color: var(--text-muted) !important;
+}
+
+.hero-tag {
+    color: var(--text-white) !important;
+    background: rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.hero-card:hover .hero-tag {
+    color: var(--accent-red) !important;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+/* Large Icon Styles */
+.large-hero-icon {
+    font-size: 10rem;
+    color: var(--text-white);
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.hero-card:hover .large-hero-icon {
+    color: var(--accent-red);
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.4));
+}
+
+/* Decorative Icons */
+.decorative-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.5rem;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.hero-card:hover .decorative-icon {
+    color: var(--accent-red);
+    opacity: 0.6;
+}
+
+.icon-1 { top: 10%; left: 10%; animation: float 4s infinite ease-in-out; }
+.icon-2 { top: 20%; right: 10%; animation: float 5s infinite ease-in-out 1s; }
+.icon-3 { bottom: 15%; left: 15%; animation: float 6s infinite ease-in-out 0.5s; }
+.icon-4 { bottom: 10%; right: 20%; animation: float 4.5s infinite ease-in-out 1.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Hero Buttons */
+.btn-hero-primary {
+    background: var(--text-white);
+    color: var(--accent-red);
+    border: 2px solid var(--text-white);
+    padding: 14px 34px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-card:hover .btn-hero-primary {
+    background: var(--accent-red);
+    color: var(--text-white);
+    border-color: var(--accent-red);
+}
+
+.hero-card:hover .btn-hero-primary:hover {
+    background: transparent;
+    color: var(--accent-red);
+}
+
+.btn-hero-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--text-white);
+    padding: 14px 34px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-card:hover .btn-hero-outline {
+    border-color: var(--accent-red);
+    color: var(--text-white);
+}
+
+.hero-card:hover .btn-hero-outline:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+/* --- Filter Bar (Integrated Glassmorphism) --- */
+.filter-glass-bar {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.filter-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.filter-btn {
+    color: var(--text-muted);
+    text-decoration: none !important;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50px;
+}
+
+.filter-btn:hover {
+    color: var(--accent-red);
+    background: rgba(255, 0, 0, 0.03);
+}
+
+.filter-btn.active {
+    color: var(--text-white);
+    background: var(--accent-red);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* --- Movie Grid --- */
+.movie-grid {
+    margin-top: 20px;
+}
+
+/* --- Movie Card (Advanced Glassmorphism) --- */
+.movie-card-col {
+    opacity: 1;
+}
+
+.movie-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex; flex-direction: column;
+}
+
+.movie-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--accent-red);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 0, 0, 0.1);
+}
+
+/* Neural Glow Pulse - Improved */
+.movie-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.movie-card:hover::after {
+    opacity: 1;
+    animation: glowRotate 6s linear infinite;
+}
+
+@keyframes glowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.movie-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    z-index: 10;
+}
+
+.movie-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Match Score Badge */
+.match-score-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    z-index: 12;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+}
+
+/* Poster Styling */
+.card-img-top-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 150%;
+    overflow: hidden;
+    background: #000;
+    border-radius: 20px;
+    margin: 10px;
+    width: calc(100% - 20px);
+}
+
+.poster-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 5;
+    backdrop-filter: blur(4px);
+    transform: translateY(20px);
+}
+
+.movie-card:hover .poster-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.movie-overview-short {
+    font-size: 0.7rem;
+    color: var(--text-white);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.movie-card:hover .movie-poster {
+    transform: scale(1.1);
+}
+
+/* Card Body */
+.card-body {
+    padding: 15px 20px 20px !important;
+    background: transparent;
+    flex-grow: 1;
+    display: flex; flex-direction: column;
+    z-index: 2;
+}
+
+.movie-title {
+    color: var(--text-white) !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.rating-tech {
+    font-size: 0.7rem;
+    color: var(--accent-red);
+    font-weight: 700;
+}
+
+.status-optimal {
+    font-size: 0.55rem;
+    color: var(--text-success);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- Buttons (Technical) --- */
+.btn-sync {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 0.6rem;
+    padding: 10px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    margin-top: auto;
+}
+
+.btn-sync:hover {
+    border-color: var(--accent-red);
+    color: var(--text-white);
+    background: var(--accent-red);
+}
+
+/* --- System Alerts --- */
+.alert-system {
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid var(--maroon);
+    color: var(--accent-red);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+/* Force visibility */
+.text-white { color: var(--text-white) !important; opacity: 1 !important; }
+.text-muted { color: var(--text-muted) !important; }

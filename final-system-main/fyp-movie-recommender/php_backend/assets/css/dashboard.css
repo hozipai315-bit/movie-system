@@ -1,0 +1,102 @@
+/* dashboard.css - Premium Tech Red Theme for Dashboard */
+
+/* --- Stats Bar --- */
+.stats-bar {
+    background: #050505;
+    border: var(--border-thin);
+    border-radius: 24px;
+    padding: 15px 0;
+    margin: 30px 0 50px 0;
+}
+
+.stat-item {
+    border-right: var(--border-thin);
+    padding: 0 30px;
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.stat-value span {
+    color: var(--accent-red);
+}
+
+.premium-card p.text-muted {
+    color: var(--text-white) !important;
+    opacity: 0.9;
+}
+
+/* --- Recent Intelligence --- */
+.recent-item {
+    background: #0c0c0c;
+    border: var(--border-thin);
+    border-radius: 24px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.recent-item:hover {
+    border-color: var(--accent-red);
+    background: var(--accent-red);
+    transform: translateY(-5px);
+}
+
+.recent-item:hover h6,
+.recent-item:hover p {
+    color: var(--text-white) !important;
+    opacity: 1;
+}
+
+.recent-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-logs-container {
+    flex-grow: 1;
+}
+
+.recent-img {
+    width: 60px;
+    height: 90px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.recent-info h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.recent-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-white) !important;
+    opacity: 0.85;
+}
+
+.btn-outline-premium {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+}

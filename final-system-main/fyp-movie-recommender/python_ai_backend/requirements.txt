@@ -1,0 +1,13 @@
+flask
+flask-cors
+textblob
+nltk
+SpeechRecognition
+pydub
+librosa
+numpy
+opencv-python-headless
+deepface
+requests
+mysql-connector-python
+python-dotenv

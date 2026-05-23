@@ -1,0 +1,60 @@
+/* assets/css/admin_logs.css */
+
+.bg-purple-subtle {
+    background: rgba(168, 144, 254, 0.1);
+}
+
+.text-purple {
+    color: var(--admin-purple) !important;
+    text-shadow: 0 0 5px rgba(168, 144, 254, 0.3);
+}
+
+
+/* Method Badges */
+.method-badge {
+    font-family: var(--admin-font-tech);
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    border: 1px solid transparent;
+}
+
+.badge-text {
+    background: rgba(168, 144, 254, 0.1) !important;
+    color: var(--admin-purple) !important;
+    border-color: rgba(168, 144, 254, 0.3) !important;
+}
+
+.badge-voice {
+    background: rgba(147, 197, 253, 0.1) !important;
+    color: #93c5fd !important;
+    border-color: rgba(147, 197, 253, 0.3) !important;
+}
+
+.badge-face {
+    background: rgba(253, 186, 116, 0.1) !important;
+    color: #fdba74 !important;
+    border-color: rgba(253, 186, 116, 0.3) !important;
+}
+
+/* Scroll Container Terminal Look */
+.history-scroll-container::-webkit-scrollbar-thumb {
+    background: #222;
+    border: 2px solid var(--admin-bg);
+}
+
+.history-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--admin-purple);
+}
+
+/* Search Input Tech Look */
+.input-group .form-control {
+    font-family: var(--admin-font-tech);
+    font-size: 0.9rem;
+}
+
+.input-group .form-control::placeholder {
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}

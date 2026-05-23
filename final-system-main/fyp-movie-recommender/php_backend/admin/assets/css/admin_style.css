@@ -1,0 +1,418 @@
+/* assets/css/admin_style.css */
+:root {
+    --admin-purple: #a890fe;
+    --admin-purple-hover: #9075fe;
+    --admin-bg: #0d0d0d;
+    --admin-card-bg: #141414;
+    --admin-card-border: rgba(168, 144, 254, 0.3);
+    --admin-text-primary: #e0e0e0;
+    --admin-text-secondary: #949494;
+    --admin-pill-radius: 50px;
+    --admin-card-radius: 24px;
+    --admin-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    --admin-purple-shadow: 0 0 25px rgba(168, 144, 254, 0.2);
+    --admin-font-main: 'Inter', sans-serif;
+    --admin-font-tech: 'Space Mono', monospace;
+    --admin-font-header: 'Michroma', sans-serif;
+}
+
+.admin-body {
+    background-color: var(--admin-bg);
+    font-family: var(--admin-font-main);
+    color: var(--admin-text-primary);
+    letter-spacing: -0.01em;
+}
+
+/* Fix for muted text visibility in admin */
+.admin-body .text-muted,
+.admin-body .text-white-50 {
+    color: var(--admin-text-secondary) !important;
+}
+
+.tech-label {
+    font-family: var(--admin-font-tech);
+    color: var(--admin-text-secondary) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tech-value {
+    font-family: var(--admin-font-tech);
+    color: #fff !important;
+}
+
+/* --- GLOBAL TYPOGRAPHY --- */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--admin-font-header);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* --- HEADER ANIMATION & ROUNDED --- */
+.admin-navbar-animated {
+    margin: 15px 20px;
+    border-radius: var(--admin-pill-radius);
+    box-shadow: var(--admin-purple-shadow);
+    border: 1px solid rgba(168, 144, 254, 0.2);
+    background-color: rgba(26, 26, 26, 0.8) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: slideDownNav 0.8s ease-out;
+}
+
+@keyframes slideDownNav {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.admin-navbar-animated:hover {
+    border-color: var(--admin-purple);
+}
+
+.animate-brand {
+    position: relative;
+    color: var(--admin-purple) !important;
+    font-weight: 800 !important;
+    letter-spacing: 1px;
+}
+
+.animate-brand span {
+    color: #fff;
+    opacity: 0.7;
+}
+
+/* Nav Link Visibility */
+.admin-navbar-animated .nav-link {
+    color: var(--admin-text-secondary) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 0.5rem 1.2rem !important;
+    transition: all 0.3s ease;
+}
+
+.admin-navbar-animated .nav-link:hover,
+.admin-navbar-animated .nav-link.active {
+    color: var(--admin-purple) !important;
+    text-shadow: 0 0 10px rgba(168, 144, 254, 0.3);
+}
+
+/* --- BUTTONS --- */
+.btn-primary-admin {
+    background-color: var(--admin-purple);
+    border-color: var(--admin-purple);
+    color: #0d0d0d;
+    font-weight: 700;
+    border-radius: var(--admin-pill-radius);
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--admin-font-tech);
+}
+
+.btn-primary-admin:hover {
+    background-color: #fff;
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.bg-primary-admin {
+    background-color: var(--admin-purple) !important;
+    color: #0d0d0d !important;
+}
+
+/* --- DASHBOARD CARDS (Global) --- */
+.dashboard-card {
+    background: var(--admin-card-bg);
+    border-radius: var(--admin-card-radius);
+    padding: 30px;
+    box-shadow: var(--admin-shadow);
+    border: 1px solid var(--admin-card-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--admin-purple);
+    opacity: 0.5;
+}
+
+.card-title-admin {
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    color: var(--admin-text-primary) !important;
+    letter-spacing: -0.5px;
+}
+
+.card-title-admin i {
+    margin-right: 12px;
+    color: var(--admin-purple);
+}
+
+/* --- FOOTER PREMIUM --- */
+.admin-footer-premium {
+    background-color: rgba(13, 13, 13, 0.9) !important;
+    color: var(--admin-text-primary);
+    border-radius: 50px 50px 0 0;
+    margin-top: 80px;
+    position: relative;
+    display: block !important;
+    clear: both;
+    z-index: 10;
+    border-top: 1px solid var(--admin-purple);
+    box-shadow: 0 -10px 30px rgba(168, 144, 254, 0.1);
+}
+
+.footer-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--admin-purple);
+}
+
+.footer-brand span {
+    color: #fff;
+    opacity: 0.5;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    color: var(--admin-text-secondary);
+    line-height: 1.6;
+}
+
+.footer-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: var(--admin-purple);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--admin-text-secondary);
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--admin-purple);
+    padding-left: 5px;
+}
+
+.footer-health-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(168, 144, 254, 0.1);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.pulse-green {
+    background-color: #4ade80;
+    box-shadow: 0 0 0 rgba(74, 222, 128, 0.4);
+    animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: var(--admin-text-secondary);
+}
+
+/* --- TABLES --- */
+.admin-table {
+    background-color: transparent !important;
+    border-collapse: collapse !important; /* Critical for stable column alignment */
+    width: 100%;
+    border: none !important;
+    margin-bottom: 0;
+}
+
+.admin-table thead th {
+    background-color: #0d0d0d !important;
+    border-bottom: 2px solid var(--admin-purple) !important;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-family: var(--admin-font-tech);
+    letter-spacing: 2px;
+    padding: 20px 15px !important;
+    color: var(--admin-purple) !important;
+    white-space: nowrap;
+    border-top: none !important;
+    vertical-align: middle;
+}
+
+/* Uniform Alignment for First and Last Columns */
+.admin-table th:first-child,
+.admin-table td:first-child {
+    padding-left: 30px !important;
+}
+
+.admin-table th:last-child,
+.admin-table td:last-child {
+    padding-right: 30px !important;
+}
+
+/* Custom Scrollbar for Containers */
+.history-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+.history-scroll-container::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+.history-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--admin-purple);
+    border-radius: 10px;
+}
+
+.admin-table tbody td {
+    background-color: #141414 !important;
+    padding: 20px 15px !important;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: var(--admin-text-secondary) !important;
+    font-family: var(--admin-font-tech);
+    position: relative;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.admin-table tbody tr {
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.admin-table tbody tr:hover td {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    z-index: 10;
+}
+
+/* --- THE 4 SOLID GLOWING LINES EFFECT --- */
+/* Re-engineered for perfect alignment using box-shadow instead of TR-relative positioning */
+
+.admin-table tbody tr:hover td {
+    /* Top and Bottom Glowing Lines via Box Shadow */
+    box-shadow: inset 0 2px 0 0 var(--admin-purple),
+                inset 0 -2px 0 0 var(--admin-purple),
+                0 0 15px rgba(168, 144, 254, 0.1);
+}
+
+/* Left side glow on first cell */
+.admin-table tbody tr:hover td:first-child {
+    box-shadow: inset 2px 2px 0 0 var(--admin-purple),
+                inset 0 -2px 0 0 var(--admin-purple),
+                0 0 15px rgba(168, 144, 254, 0.1);
+}
+
+/* Right side glow on last cell */
+.admin-table tbody tr:hover td:last-child {
+    box-shadow: inset -2px 2px 0 0 var(--admin-purple),
+                inset 0 -2px 0 0 var(--admin-purple),
+                0 0 15px rgba(168, 144, 254, 0.1);
+}
+
+/* Global Input Fixes */
+.form-control, .form-select {
+    background-color: #1a1a1a !important;
+    border: 1px solid rgba(168, 144, 254, 0.2) !important;
+    color: white !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 0.9rem;
+}
+
+.input-group-text {
+    background-color: #1a1a1a !important;
+    border: 1px solid rgba(168, 144, 254, 0.2) !important;
+    color: var(--admin-purple) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #1a1a1a !important;
+    border-color: var(--admin-purple) !important;
+    box-shadow: 0 0 10px rgba(168, 144, 254, 0.3) !important;
+    color: white !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* --- BADGES --- */
+.method-badge {
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-text { background: rgba(168, 144, 254, 0.1); color: var(--admin-purple); border: 1px solid rgba(168, 144, 254, 0.3); }
+.badge-voice { background: rgba(179, 136, 255, 0.1); color: #b388ff; border: 1px solid rgba(179, 136, 255, 0.3); }
+.badge-face { background: rgba(255, 152, 0, 0.1); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); }
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--admin-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--admin-purple);
+}

@@ -1,0 +1,64 @@
+/* assets/css/admin_settings.css */
+
+.text-purple { color: var(--admin-purple) !important; }
+
+/* Settings Form Stylings */
+.form-label {
+    letter-spacing: 1px;
+    font-family: var(--admin-font-tech);
+    margin-bottom: 0.8rem;
+}
+
+.input-group-text {
+    border-radius: 12px 0 0 12px !important;
+    background: #1a1a1a !important;
+}
+
+.form-control {
+    border-radius: 0 12px 12px 0 !important;
+    font-family: var(--admin-font-tech);
+}
+
+.form-control:focus {
+    background-color: #1a1a1a !important;
+    border-color: var(--admin-purple) !important;
+    box-shadow: 0 0 10px rgba(168, 144, 254, 0.2);
+}
+
+/* Environment Info Panels */
+.environment-panel {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.3s;
+}
+
+.environment-panel:hover {
+    border-color: rgba(168, 144, 254, 0.3);
+}
+
+.x-small {
+    font-size: 0.7rem;
+}
+
+/* Commit Button */
+.btn-primary-admin {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary-admin::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.btn-primary-admin:hover::after {
+    left: 120%;
+}

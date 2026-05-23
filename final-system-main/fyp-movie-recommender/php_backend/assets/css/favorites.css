@@ -1,0 +1,174 @@
+/* favorites.css - Premium Neural Favorites (List Layout) */
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* --- Favorite Items (List Style) --- */
+.favorite-item.animate-reveal {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.favorite-card {
+    background: var(--bg-card);
+    border: var(--border-thin);
+    border-radius: 4px;
+    padding: 15px 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.favorite-card:hover {
+    border-color: var(--accent-red);
+    background: #0c0c0c;
+    transform: translateX(5px);
+}
+
+.favorite-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--maroon);
+    transition: background 0.3s;
+}
+
+.favorite-card:hover::before {
+    background: var(--accent-red);
+}
+
+/* Poster in List */
+.favorite-poster-wrapper {
+    width: 60px;
+    height: 90px;
+    border: 1px solid var(--maroon);
+    border-radius: 2px;
+    overflow: hidden;
+    background: #000;
+}
+
+.favorite-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2);
+    transition: transform 0.4s ease;
+}
+
+.favorite-card:hover .favorite-poster {
+    transform: scale(1.1);
+    filter: grayscale(0);
+}
+
+/* Metadata Labels */
+.archive-id {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.mood-tag-tech {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-red);
+    font-weight: 800;
+    font-family: monospace;
+}
+
+/* Dropdown UI */
+.btn-filter {
+    background: transparent;
+    border: 1px solid var(--text-white);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 8px 18px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.dropdown-menu-dark {
+    background-color: var(--bg-card);
+    border: var(--border-thin);
+    border-radius: 2px;
+    z-index: 1021;
+}
+
+.dropdown-item-tech {
+    color: var(--text-white);
+    opacity: 0.7;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+}
+
+.dropdown-item-tech:hover, .dropdown-item-tech.active {
+    background-color: var(--maroon);
+    color: var(--accent-red);
+    opacity: 1;
+}
+
+/* Action Buttons */
+.btn-remove-tech {
+    background: transparent;
+    border: 1px solid var(--maroon);
+    color: var(--text-grey);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 8px 15px;
+    transition: all 0.3s;
+    border-radius: 2px;
+}
+
+.btn-remove-tech:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    background: rgba(255, 0, 0, 0.05);
+}
+
+.btn-initiate {
+    background: transparent;
+    border: 1px solid var(--text-white);
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 12px 25px;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Force visibility */
+.text-white { color: var(--text-white) !important; opacity: 1 !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Empty State */
+.empty-archive {
+    padding: 80px 0;
+    text-align: center;
+    border: var(--border-thin);
+    border-radius: 4px;
+    background: #050505;
+}
