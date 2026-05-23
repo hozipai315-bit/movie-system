@@ -55,11 +55,11 @@ if (!$is_guest) {
             <a class="navbar-brand" href="dashboard.php">
                 <?php echo htmlspecialchars(SITE_NAME); ?>.
             </a>
-            
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <?php foreach ($nav_links as $label => $details): ?>
@@ -72,7 +72,7 @@ if (!$is_guest) {
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                
+
                 <div class="d-flex">
                     <a class="btn btn-logout" href="logout.php">
                         <?php echo $is_guest ? 'Exit Guest' : 'Logout'; ?>
@@ -91,15 +91,15 @@ if (!$is_guest) {
                 <span class="modal-protocol-tag">Protocol: Analysis Result</span>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="modalCloseBtn"></button>
             </div>
-            <div class="modal-body text-center p-5">
+            <div class="modal-body text-center p-3 p-md-5">
                 <div class="mood-icon-wrapper mb-4">
                     <div class="icon-ring"></div>
                     <i id="modalMoodIcon" class="display-1" style="color: var(--accent-red);"></i>
                 </div>
-                
+
                 <h2 id="modalMoodText" class="fw-800 text-white mb-2" style="letter-spacing: 2px;"></h2>
                 <p class="small text-muted mb-4 px-4">AI analysis complete. Neural patterns synchronized with cinematic database.</p>
-                
+
                 <div class="system-readout mb-4">
                     <div class="readout-item">
                         <span class="label">Confidence</span>

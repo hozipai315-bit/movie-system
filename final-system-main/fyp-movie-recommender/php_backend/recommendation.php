@@ -122,8 +122,8 @@ set_page_title("Recommended Movies - MoodAI Rec.");
     <!-- Hero Section (Sync with Index Page Style) -->
     <section class="hero-section mb-5">
         <div class="hero-card" data-aos="zoom-in">
-            <div class="row align-items-center p-5">
-                <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="row align-items-center p-3 p-md-5">
+                <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                     <!-- Decorative small icons -->
                     <i class="bi bi-cpu-fill decorative-icon icon-1"></i>
                     <i class="bi bi-film decorative-icon icon-2"></i>
@@ -141,8 +141,8 @@ set_page_title("Recommended Movies - MoodAI Rec.");
                     <p class="lead hero-lead mb-5">
                         Our neural engine has analyzed your <?php echo strtolower($detection_method); ?> patterns and curated a selection of films that perfectly match your current emotional state.
                     </p>
-                    <div class="d-flex">
-                        <a href="dashboard.php" class="btn btn-hero-primary btn-lg me-3">RE-SCAN MOOD</a>
+                    <div class="d-flex flex-column flex-sm-row">
+                        <a href="dashboard.php" class="btn btn-hero-primary btn-lg me-sm-3 mb-3 mb-sm-0">RE-SCAN MOOD</a>
                         <a href="#movieGrid" class="btn btn-hero-outline btn-lg">EXPLORE COLLECTION</a>
                     </div>
                 </div>

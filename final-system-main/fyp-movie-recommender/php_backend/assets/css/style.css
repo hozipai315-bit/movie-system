@@ -713,3 +713,45 @@ main {
     box-shadow: 0 -4px 20px rgba(255, 0, 0, 0.3);
     background: #000;
 }
+
+/* --- Responsiveness Media Queries --- */
+
+/* For Tablets (up to 1024px) */
+@media (max-width: 1024px) {
+    .hero-title-text { font-size: 3.5rem; }
+    .section-title-premium { font-size: 2.5rem; }
+    .dashboard-hero-section .hero-title-text { font-size: 3rem; }
+}
+
+/* For Tablets (up to 768px) */
+@media (max-width: 768px) {
+    .hero-title-text { font-size: 2.8rem; }
+    .section-title-premium { font-size: 2.2rem; margin-bottom: 2rem; }
+    .hero-card { border-radius: 30px; }
+    .large-hero-icon { font-size: 7rem; }
+    .dashboard-hero-section .hero-title-text { font-size: 2.5rem; }
+    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 12px 24px; font-size: 0.9rem; }
+    .footer { border-top-left-radius: 30px; border-top-right-radius: 30px; }
+    .modal-dialog { margin: 1rem; }
+}
+
+/* For Mobile (up to 375px) */
+@media (max-width: 375px) {
+    .hero-title-text { font-size: 2.2rem; }
+    .section-title-premium { font-size: 1.8rem; }
+    .large-hero-icon { font-size: 5rem; }
+    .hero-tag { font-size: 0.7rem; letter-spacing: 1px; }
+    .dashboard-hero-section .hero-title-text { font-size: 2rem; }
+    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 10px 20px; font-size: 0.8rem; width: 100%; margin-bottom: 10px; margin-right: 0 !important; }
+    .navbar-brand { font-size: 1.1rem; }
+    .login-modal-content, .register-modal-content, .mood-modal-content { padding: 1rem; }
+    .login-title, .register-title { font-size: 1.5rem; }
+    .system-readout { flex-direction: column; gap: 10px; align-items: center; }
+    .readout-item { text-align: center; }
+}
+
+/* For Small Mobile (up to 320px) */
+@media (max-width: 320px) {
+    .hero-title-text { font-size: 1.8rem; }
+    .section-title-premium { font-size: 1.5rem; }
+}

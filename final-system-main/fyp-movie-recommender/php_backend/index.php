@@ -89,8 +89,8 @@ if (empty($marquee_movies)) {
     <section id="home" class="hero-section">
         <div class="container">
             <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-5">
-                    <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">
+                <div class="row align-items-center p-3 p-md-5">
+                    <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>
                         <i class="bi bi-film decorative-icon icon-2"></i>
@@ -108,8 +108,8 @@ if (empty($marquee_movies)) {
                         <p class="lead hero-lead mb-5">
                             Experience a movie journey tailored to you. MoodAI uses smart AI to find the perfect movie for you based on how you feel.
                         </p>
-                        <div class="d-flex">
-                            <button type="button" class="btn btn-hero-primary btn-lg me-3" data-bs-toggle="modal" data-bs-target="#registerModal">Find My Mood</button>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button type="button" class="btn btn-hero-primary btn-lg me-sm-3 mb-3 mb-sm-0" data-bs-toggle="modal" data-bs-target="#registerModal">Find My Mood</button>
                             <a href="#how-it-works" class="btn btn-hero-outline btn-lg">See How it Works</a>
                         </div>
                     </div>

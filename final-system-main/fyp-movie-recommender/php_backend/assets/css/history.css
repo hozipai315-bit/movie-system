@@ -132,8 +132,37 @@ p.text-muted, .text-muted {
 .text-muted { color: var(--text-muted) !important; }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .history-card .card-body {
-        gap: 15px;
+    .mood-icon-premium {
+        font-size: 1.5rem;
+        margin-right: 15px;
     }
+}
+
+    .history-card .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .mood-icon-premium {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    .history-card .ms-auto {
+        margin-left: 0 !important;
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-card .card-body { gap: 15px; }
+    .mood-icon-premium { font-size: 1.5rem; margin-right: 15px; }
+}
+
+@media (max-width: 375px) {
+    .history-card { padding: 15px; }
+    .history-card .d-flex { flex-direction: column; align-items: flex-start !important; }
+    .mood-icon-premium { margin-bottom: 10px; margin-right: 0; }
+    .history-card .ms-auto { margin-left: 0 !important; margin-top: 10px; width: 100%; text-align: left; }
 }
