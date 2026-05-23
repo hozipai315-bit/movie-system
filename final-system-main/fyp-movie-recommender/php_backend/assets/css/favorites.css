@@ -172,3 +172,31 @@ body {
     border-radius: 4px;
     background: #050505;
 }
+
+/* --- Responsiveness --- */
+
+    .favorite-card .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .favorite-poster-wrapper {
+        margin-bottom: 15px;
+    }
+    .favorite-card .ms-auto {
+        margin-left: 0 !important;
+        margin-top: 15px;
+        width: 100%;
+    }
+    .btn-remove-tech {
+        width: 100%;
+    }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 375px) {
+    .favorite-card { padding: 15px; }
+    .favorite-card .d-flex { flex-direction: column; align-items: flex-start !important; }
+    .favorite-poster-wrapper { margin-bottom: 15px; }
+    .favorite-card .ms-auto { margin-left: 0 !important; margin-top: 15px; width: 100%; }
+    .btn-remove-tech { width: 100%; }
+}

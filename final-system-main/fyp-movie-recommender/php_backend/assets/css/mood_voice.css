@@ -156,3 +156,31 @@ body {
 .blinking-text {
     animation: blink 1s infinite;
 }
+
+/* --- Responsiveness --- */
+
+}
+
+    .mic-diagnostic {
+        font-size: 2.5rem;
+    }
+    .interface-card {
+        padding: 15px;
+    }
+    .btn-protocol {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .mic-diagnostic { font-size: 3rem; }
+}
+
+@media (max-width: 375px) {
+    .acoustic-chamber { padding: 30px 15px; }
+    .mic-diagnostic { font-size: 2.5rem; }
+    .interface-card { padding: 15px; }
+    .btn-protocol { width: 100%; margin-bottom: 10px; }
+}

@@ -123,3 +123,21 @@ body {
     border-color: var(--accent-red);
     color: var(--text-white);
 }
+
+/* --- Responsiveness --- */
+
+    .interface-card {
+        padding: 15px;
+    }
+    .btn-protocol {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 375px) {
+    .terminal-textarea { font-size: 0.9rem; padding: 15px; }
+    .interface-card { padding: 15px; }
+    .btn-protocol { width: 100%; margin-bottom: 10px; }
+}

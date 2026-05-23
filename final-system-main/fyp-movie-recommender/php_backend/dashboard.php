@@ -56,8 +56,8 @@ set_page_title("MoodAI | Your Dashboard");
     <section class="hero-section dashboard-hero-section mb-4">
         <div class="container px-0">
             <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-4">
-                    <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">
+                <div class="row align-items-center p-3 p-md-4">
+                    <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>
                         <i class="bi bi-film decorative-icon icon-2"></i>
@@ -75,8 +75,8 @@ set_page_title("MoodAI | Your Dashboard");
                         <p class="lead hero-lead mb-5">
                             Your personal AI Command Center is online. All neural patterns are synchronized and ready for high-fidelity movie discovery.
                         </p>
-                        <div class="d-flex">
-                            <a href="mood_face.php" class="btn btn-hero-primary btn-lg me-3">Start Analysis</a>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <a href="mood_face.php" class="btn btn-hero-primary btn-lg me-sm-3 mb-3 mb-sm-0">Start Analysis</a>
                             <a href="history.php" class="btn btn-hero-outline btn-lg">View Intelligence</a>
                         </div>
                     </div>
