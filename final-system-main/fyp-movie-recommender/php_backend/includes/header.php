@@ -50,7 +50,7 @@ if (!$is_guest) {
 }
 ?>
 <header>
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="dashboard.php">
                 <?php echo htmlspecialchars(SITE_NAME); ?>.

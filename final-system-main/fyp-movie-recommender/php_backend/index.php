@@ -62,7 +62,7 @@ if (empty($marquee_movies)) {
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="#">
                 Mood<span>AI</span>.
