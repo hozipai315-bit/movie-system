@@ -716,6 +716,11 @@ main {
 
 /* --- Responsiveness Media Queries --- */
 
+/* Global button nowrap fix */
+.btn-hero-primary, .btn-hero-outline, .btn-premium, .btn-protocol, .btn-outline-premium {
+    white-space: nowrap;
+}
+
 /* For Tablets (up to 1024px) */
 @media (max-width: 1024px) {
     .hero-title-text { font-size: 3.5rem !important; }
@@ -731,20 +736,35 @@ main {
     .hero-card { border-radius: 30px; }
     .large-hero-icon { font-size: 6rem !important; }
     .dashboard-hero-section .hero-title-text { font-size: 2.5rem !important; }
-    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 12px 24px; font-size: 0.9rem; }
+    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-protocol, .btn-outline-premium {
+        padding: 10px 18px !important;
+        font-size: 0.85rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 45px !important;
+    }
     .footer { border-top-left-radius: 30px; border-top-right-radius: 30px; }
     .modal-dialog { margin: 1rem; }
 }
 
-/* For Mobile (up to 480px) */
-@media (max-width: 480px) {
+/* For Mobile (up to 375px) */
+@media (max-width: 375px) {
     .hero-section { padding: 20px 0 !important; margin-top: 20px !important; }
     .hero-title-text { font-size: 1.8rem !important; line-height: 1.2 !important; }
     .section-title-premium { font-size: 1.8rem; }
     .large-hero-icon { font-size: 4rem !important; }
     .hero-tag { font-size: 0.7rem; letter-spacing: 1px; }
     .dashboard-hero-section .hero-title-text { font-size: 1.8rem !important; }
-    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 10px 20px; font-size: 0.8rem; width: 100% !important; margin-bottom: 10px; margin-right: 0 !important; }
+    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-protocol, .btn-outline-premium {
+        padding: 8px 15px !important;
+        font-size: 0.75rem !important;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+        height: 42px !important;
+    }
+    .hero-content .d-flex { flex-direction: column !important; }
     .navbar-brand { font-size: 1.1rem; }
     .login-modal-content, .register-modal-content, .mood-modal-content { padding: 1rem; }
     .login-title, .register-title { font-size: 1.5rem; }
