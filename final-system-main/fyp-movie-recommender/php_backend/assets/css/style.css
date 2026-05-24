@@ -718,31 +718,33 @@ main {
 
 /* For Tablets (up to 1024px) */
 @media (max-width: 1024px) {
-    .hero-title-text { font-size: 3.5rem; }
+    .hero-title-text { font-size: 3.5rem !important; }
     .section-title-premium { font-size: 2.5rem; }
-    .dashboard-hero-section .hero-title-text { font-size: 3rem; }
+    .dashboard-hero-section .hero-title-text { font-size: 3rem !important; }
 }
 
 /* For Tablets (up to 768px) */
 @media (max-width: 768px) {
-    .hero-title-text { font-size: 2.8rem; }
+    .hero-section { min-height: auto !important; padding: 40px 0 !important; }
+    .hero-title-text { font-size: 2.5rem !important; }
     .section-title-premium { font-size: 2.2rem; margin-bottom: 2rem; }
     .hero-card { border-radius: 30px; }
-    .large-hero-icon { font-size: 7rem; }
-    .dashboard-hero-section .hero-title-text { font-size: 2.5rem; }
+    .large-hero-icon { font-size: 6rem !important; }
+    .dashboard-hero-section .hero-title-text { font-size: 2.5rem !important; }
     .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 12px 24px; font-size: 0.9rem; }
     .footer { border-top-left-radius: 30px; border-top-right-radius: 30px; }
     .modal-dialog { margin: 1rem; }
 }
 
-/* For Mobile (up to 375px) */
-@media (max-width: 375px) {
-    .hero-title-text { font-size: 2.2rem; }
+/* For Mobile (up to 480px) */
+@media (max-width: 480px) {
+    .hero-section { padding: 20px 0 !important; margin-top: 20px !important; }
+    .hero-title-text { font-size: 1.8rem !important; line-height: 1.2 !important; }
     .section-title-premium { font-size: 1.8rem; }
-    .large-hero-icon { font-size: 5rem; }
+    .large-hero-icon { font-size: 4rem !important; }
     .hero-tag { font-size: 0.7rem; letter-spacing: 1px; }
-    .dashboard-hero-section .hero-title-text { font-size: 2rem; }
-    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 10px 20px; font-size: 0.8rem; width: 100%; margin-bottom: 10px; margin-right: 0 !important; }
+    .dashboard-hero-section .hero-title-text { font-size: 1.8rem !important; }
+    .btn-premium, .btn-hero-primary, .btn-hero-outline, .btn-outline-premium { padding: 10px 20px; font-size: 0.8rem; width: 100% !important; margin-bottom: 10px; margin-right: 0 !important; }
     .navbar-brand { font-size: 1.1rem; }
     .login-modal-content, .register-modal-content, .mood-modal-content { padding: 1rem; }
     .login-title, .register-title { font-size: 1.5rem; }
@@ -752,6 +754,6 @@ main {
 
 /* For Small Mobile (up to 320px) */
 @media (max-width: 320px) {
-    .hero-title-text { font-size: 1.8rem; }
+    .hero-title-text { font-size: 1.6rem !important; }
     .section-title-premium { font-size: 1.5rem; }
 }
