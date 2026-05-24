@@ -9,20 +9,7 @@ $message_type = 'info';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
     $action = $_POST['action'] ?? '';
 
-    // 1. Mood Management
-    if ($action === 'add_mood') {
-        $name = trim($_POST['mood_name'] ?? '');
-        if ($name) {
-            try {
-                $stmt = $pdo->prepare("INSERT IGNORE INTO mood_definitions (mood_name) VALUES (?)");
-                $stmt->execute([$name]);
-                $message = "Mood '$name' initialized in neural database.";
-                $message_type = 'success';
-            } catch (Exception $e) { $message = $e->getMessage(); $message_type = 'danger'; }
-        }
-    }
-
-    // 2. Mapping Management
+    // 1. Mapping Management
     if ($action === 'save_mapping') {
         $mood_id = (int)($_POST['mood_id'] ?? 0);
         $genre_id = (int)($_POST['genre_id'] ?? 0);
@@ -52,19 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
         } catch (Exception $e) { $message = $e->getMessage(); }
     }
 
-    if ($action === 'delete_mood') {
-        $id = (int)($_POST['id'] ?? 0);
-        try {
-            $pdo->prepare("DELETE FROM mood_definitions WHERE id = ?")->execute([$id]);
-            $pdo->prepare("DELETE FROM mood_genre_mapping WHERE mood_id = ?")->execute([$id]);
-            $message = "Mood and all its links purged from system.";
-        } catch (Exception $e) { $message = $e->getMessage(); }
-    }
 }
 
 // --- FETCH DATA ---
-$moods = $pdo ? $pdo->query("SELECT * FROM mood_definitions ORDER BY mood_name ASC")->fetchAll() : [];
-$mappings = $pdo ? $pdo->query("SELECT m.*, d.mood_name FROM mood_genre_mapping m JOIN mood_definitions d ON m.mood_id = d.id ORDER BY d.mood_name ASC, m.weight DESC")->fetchAll() : [];
+$fixed_moods = ['Happy', 'Sad', 'Angry', 'Excited', 'Neutral'];
+$in_clause = "'" . implode("','", $fixed_moods) . "'";
+
+$moods = $pdo ? $pdo->query("SELECT * FROM mood_definitions WHERE mood_name IN ($in_clause) ORDER BY FIELD(mood_name, $in_clause)")->fetchAll() : [];
+$mappings = $pdo ? $pdo->query("SELECT m.*, d.mood_name FROM mood_genre_mapping m JOIN mood_definitions d ON m.mood_id = d.id WHERE d.mood_name IN ($in_clause) ORDER BY FIELD(d.mood_name, $in_clause), m.weight DESC")->fetchAll() : [];
 
 $tmdb_genres = [
     28 => 'Action', 12 => 'Adventure', 16 => 'Animation', 35 => 'Comedy', 80 => 'Crime',
@@ -96,28 +78,24 @@ $tmdb_genres = [
 
         <!-- Sidebar: Mood Management -->
         <div class="col-lg-4">
-            <!-- Add New Mood -->
-            <div class="dashboard-card mb-4" data-aos="fade-right">
-                <h5 class="card-title-admin mb-3"><i class="bi bi-plus-circle text-purple"></i> Add New Mood</h5>
-                <form action="movies.php" method="POST" class="d-flex gap-2">
-                    <input type="hidden" name="action" value="add_mood">
-                    <input type="text" name="mood_name" class="form-control rounded-pill bg-dark border-secondary text-white" placeholder="e.g. Happy" required>
-                    <button type="submit" class="btn btn-primary-admin rounded-circle p-0 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-plus fs-4"></i></button>
-                </form>
-            </div>
-
-            <!-- Mood List -->
-            <div class="dashboard-card" data-aos="fade-right" data-aos-delay="100">
-                <h5 class="card-title-admin mb-4"><i class="bi bi-list-ul"></i> System Moods</h5>
-                <div class="list-group list-group-flush history-scroll-container" style="max-height: 400px;">
-                    <?php foreach ($moods as $m): ?>
-                        <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0 py-3 border-bottom border-secondary">
-                            <span class="fw-800 text-uppercase small text-white" style="letter-spacing: 1px;"><?php echo htmlspecialchars($m['mood_name']); ?></span>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-outline-purple border-0" onclick="deleteMood(<?php echo $m['id']; ?>, '<?php echo addslashes($m['mood_name']); ?>')"><i class="bi bi-trash3"></i></button>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+            <!-- Mood List (Read-Only) -->
+            <div class="dashboard-card" data-aos="fade-right">
+                <h5 class="card-title-admin mb-4"><i class="bi bi-list-ul text-purple"></i> System Moods</h5>
+                <p class="small text-muted mb-3"><i class="bi bi-info-circle me-1"></i> These are the system moods. Only genre mappings can be changed.</p>
+                <div class="table-responsive">
+                    <table class="table admin-table mb-0">
+                        <thead>
+                            <tr><th>Mood Name</th><th class="text-end">Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($moods as $m): ?>
+                                <tr>
+                                    <td class="fw-800 text-uppercase small text-white" style="letter-spacing: 1px;"><?php echo htmlspecialchars($m['mood_name']); ?></td>
+                                    <td class="text-end"><span class="badge bg-dark text-success border border-success x-small">LOCKED</span></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -207,15 +185,6 @@ $tmdb_genres = [
 <script>
 function updateGenreName(select) {
     document.getElementById('genreNameInput').value = select.options[select.selectedIndex].getAttribute('data-name');
-}
-
-function deleteMood(id, name) {
-    if (confirm(`CRITICAL: Purge Mood '${name}' and all associated neural links?`)) {
-        const f = document.createElement('form');
-        f.method = 'POST'; f.action = 'movies.php';
-        f.innerHTML = `<input type="hidden" name="action" value="delete_mood"><input type="hidden" name="id" value="${id}">`;
-        document.body.appendChild(f); f.submit();
-    }
 }
 
 function testMapping(mood, genreId) {
