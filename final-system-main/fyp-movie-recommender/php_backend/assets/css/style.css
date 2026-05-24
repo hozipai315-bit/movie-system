@@ -134,7 +134,7 @@ main {
 }
 
 .premium-card:hover .section-tag {
-    opacity: 0;
+    color: var(--text-white) !important; opacity: 1 !important;
 }
 
 .premium-card:hover .btn-premium,
