@@ -87,7 +87,7 @@ set_page_title("MoodAI | Your Dashboard");
 
     <!-- Stats Bar -->
     <div class="stats-bar mb-5" data-aos="fade-up">
-        <div class="container d-flex align-items-center justify-content-between overflow-auto py-2">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap py-2">
             <div class="stat-item border-0">
                 <div class="stat-label">Neural Scans</div>
                 <div class="stat-value text-bright-red"><?php echo number_format($total_detections); ?></div>
