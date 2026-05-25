@@ -87,9 +87,8 @@ if (empty($marquee_movies)) {
 
     <!-- Split Hero Section -->
     <section id="home" class="hero-section">
-        <div class="container">
-            <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-3 p-md-5">
+        <div class="hero-card" data-aos="zoom-in">
+            <div class="row align-items-center p-3 p-md-5 g-0">
                     <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>

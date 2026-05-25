@@ -21,9 +21,8 @@ if (!$user_id) {
 
     <!-- Hero Section (AI Command Center) -->
     <section class="hero-section dashboard-hero-section mb-4">
-        <div class="container">
-            <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-4 g-0">
+        <div class="hero-card" data-aos="zoom-in">
+            <div class="row align-items-center p-3 p-md-4 g-0">
                     <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-eye-fill decorative-icon icon-1"></i>
@@ -45,7 +44,6 @@ if (!$user_id) {
                         <div class="d-flex">
                             <a href="dashboard.php" class="btn btn-hero-outline btn-lg">Back to Center</a>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
