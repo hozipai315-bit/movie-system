@@ -125,7 +125,7 @@ body {
 }
 
 /* --- Responsiveness --- */
-
+@media (max-width: 768px) {
     .interface-card {
         padding: 15px;
     }

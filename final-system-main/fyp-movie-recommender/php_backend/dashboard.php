@@ -3,8 +3,8 @@
 session_start();
 
 // --- Session Check & User Data Retrieval ---
-$user_name = $_SESSION['username'] ?? 'Operative'; 
-$user_id = $_SESSION['user_id'] ?? null; 
+$user_name = $_SESSION['username'] ?? 'Operative';
+$user_id = $_SESSION['user_id'] ?? null;
 
 if (!$user_id) {
     header("Location: login.php");
@@ -17,7 +17,7 @@ require_once 'database/connection.php';
 // Fetch stats for the Overview bar
 try {
     // If it's a real user, fetch from DB
-    if (!isset($_SESSION['is_guest']) || !$_SESSION['is_guest']) {
+    if ((!isset($_SESSION['is_guest']) || !$_SESSION['is_guest']) && $pdo) {
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM user_mood_history WHERE user_id = :uid");
         $stmt->execute(['uid' => $user_id]);
         $total_detections = $stmt->fetchColumn();
@@ -33,7 +33,7 @@ try {
         $total_favorites = 0;
         $recent_activity = [];
     }
-    
+
     if (isset($stmt)) {
         $stmt->execute(['uid' => $user_id]);
         $recent_activity = $stmt->fetchAll();
@@ -45,25 +45,25 @@ try {
     $recent_activity = [];
 }
 
-require_once 'includes/header.php'; 
+require_once 'includes/header.php';
 set_page_title("MoodAI | Your Dashboard");
 ?>
 <link rel="stylesheet" href="assets/css/dashboard.css">
 
 <main class="container pb-5 mb-5 fade-in-section">
-    
+
     <!-- Hero Section (AI Command Center) -->
     <section class="hero-section dashboard-hero-section mb-4">
-        <div class="container px-0">
+        <div class="container">
             <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-3 p-md-4">
+                <div class="row align-items-center p-3 p-md-4 g-0">
                     <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>
                         <i class="bi bi-film decorative-icon icon-2"></i>
                         <i class="bi bi-cpu-fill decorative-icon icon-3"></i>
                         <i class="bi bi-play-circle-fill decorative-icon icon-4"></i>
-                        
+
                         <!-- Large Main Tech Icon -->
                         <div class="large-hero-icon">
                             <i class="bi bi-cpu"></i>
@@ -107,11 +107,11 @@ set_page_title("MoodAI | Your Dashboard");
         </div>
     </div>
 
-    <div class="row g-5 align-items-stretch">
+    <div class="row g-3 g-md-5 align-items-stretch">
         <!-- Detection Methods -->
         <div class="col-lg-8 d-flex flex-column">
             <h5 class="text-white mb-4 fw-bold">Choose a method to find your mood</h5>
-            <div class="row g-4">
+            <div class="row g-3 g-md-4">
 
                 <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="premium-card">
@@ -187,6 +187,6 @@ set_page_title("MoodAI | Your Dashboard");
 
 </main>
 
-<?php 
-require_once 'includes/footer.php'; 
+<?php
+require_once 'includes/footer.php';
 ?>

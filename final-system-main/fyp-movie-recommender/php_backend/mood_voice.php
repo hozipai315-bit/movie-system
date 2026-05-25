@@ -21,9 +21,9 @@ if (!$user_id) {
 
     <!-- Hero Section (AI Command Center) -->
     <section class="hero-section dashboard-hero-section mb-4">
-        <div class="container px-0">
+        <div class="container">
             <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-4">
+                <div class="row align-items-center p-4 g-0">
                     <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-mic-fill decorative-icon icon-1"></i>
@@ -51,13 +51,13 @@ if (!$user_id) {
         </div>
     </section>
 
-    <div class="row g-4 align-items-stretch">
-        
+    <div class="row g-3 g-md-4 align-items-stretch">
+
         <!-- Sidebar: Objectives -->
         <div class="col-lg-3">
             <aside class="interface-card" data-aos="fade-right" data-aos-delay="100">
                 <span class="card-label">How to use</span>
-                
+
                 <div class="objective-item">
                     <span class="obj-number">01</span>
                     <p class="obj-text">Turn on your microphone to start the link.</p>
@@ -82,10 +82,10 @@ if (!$user_id) {
         <div class="col-lg-6">
             <div class="interface-card text-center" data-aos="fade-up" data-aos-delay="200">
                 <span class="card-label">Voice Analysis [ LIVE ]</span>
-                
+
                 <div class="acoustic-chamber mb-4">
                     <i id="micIcon" class="bi bi-mic-fill mic-diagnostic"></i>
-                    
+
                     <div id="audioVisualizer" class="audio-visualizer-premium">
                         <!-- JS will populate bars here -->
                     </div>
@@ -119,7 +119,7 @@ if (!$user_id) {
         <div class="col-lg-3">
             <aside class="interface-card" data-aos="fade-left" data-aos-delay="300">
                 <span class="card-label">Voice Data</span>
-                
+
                 <div class="diag-grid">
                     <div class="diag-item">
                         <span class="diag-label">Pitch Range</span>

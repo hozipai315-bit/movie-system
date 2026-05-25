@@ -209,12 +209,15 @@ body {
 }
 
 /* --- Responsiveness --- */
-
+@media (max-width: 1024px) {
     .large-hero-icon {
         font-size: 6rem;
     }
 }
 
+@media (max-width: 768px) {
+    .scanner-container { min-height: 280px; }
+    .large-hero-icon { font-size: 6rem; }
     .interface-card {
         padding: 15px;
     }
@@ -222,15 +225,6 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
-    .large-hero-icon {
-        font-size: 4rem;
-    }
-}
-
-/* --- Responsiveness --- */
-@media (max-width: 768px) {
-    .scanner-container { min-height: 280px; }
-    .large-hero-icon { font-size: 6rem; }
 }
 
 @media (max-width: 375px) {
