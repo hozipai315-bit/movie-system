@@ -20,6 +20,7 @@
 
 html, body {
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -766,6 +767,7 @@ main {
     }
     .hero-content .d-flex { flex-direction: column !important; }
     .navbar-brand { font-size: 1.1rem; }
+    .navbar > .container { padding-left: 15px !important; padding-right: 15px !important; }
     .login-modal-content, .register-modal-content, .mood-modal-content { padding: 1rem; }
     .login-title, .register-title { font-size: 1.5rem; }
     .system-readout { flex-direction: column; gap: 10px; align-items: center; }

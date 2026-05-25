@@ -40,7 +40,7 @@ body::before {
 
 /* --- Premium Login Card --- */
 .login-card {
-    width: 100%;
+    width: calc(100% - 40px);
     max-width: 450px;
     background: var(--bg-card);
     border: var(--border-thin);
