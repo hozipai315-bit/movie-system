@@ -54,9 +54,8 @@ set_page_title("MoodAI | Your Dashboard");
 
     <!-- Hero Section (AI Command Center) -->
     <section class="hero-section dashboard-hero-section mb-4">
-        <div class="container">
-            <div class="hero-card" data-aos="zoom-in">
-                <div class="row align-items-center p-3 p-md-4 g-0">
+        <div class="hero-card" data-aos="zoom-in">
+            <div class="row align-items-center p-3 p-md-4 g-0">
                     <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>
@@ -87,7 +86,7 @@ set_page_title("MoodAI | Your Dashboard");
 
     <!-- Stats Bar -->
     <div class="stats-bar mb-5" data-aos="fade-up">
-        <div class="container d-flex align-items-center justify-content-between flex-wrap py-2">
+        <div class="container d-flex align-items-center justify-content-center justify-content-md-between flex-wrap py-2">
             <div class="stat-item border-0">
                 <div class="stat-label">Neural Scans</div>
                 <div class="stat-value text-bright-red"><?php echo number_format($total_detections); ?></div>
