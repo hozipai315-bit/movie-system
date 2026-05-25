@@ -118,11 +118,6 @@
     background-color: rgba(168, 144, 254, 0.05);
 }
 
-canvas {
-    max-width: 100% !important;
-    height: auto !important;
-}
-
 /* --- HEALTH MONITOR --- */
 .health-item {
     display: flex;
@@ -141,16 +136,4 @@ canvas {
     0% { opacity: 1; }
     50% { opacity: 0.4; }
     100% { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-    .dashboard-card {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 375px) {
-    .dashboard-card {
-        padding: 15px;
-    }
 }
