@@ -28,7 +28,7 @@ try {
 
     <!-- Hero Section (Sync with Index Page Style) -->
     <section class="hero-section dashboard-hero-section mb-4">
-        <div class="container">
+        <div class="container px-0">
             <div class="hero-card" data-aos="zoom-in">
                 <div class="row align-items-center p-4">
                     <div class="col-lg-5 text-center position-relative mb-5 mb-lg-0" data-aos="fade-right">

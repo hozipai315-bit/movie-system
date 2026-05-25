@@ -9,11 +9,11 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 /* Background grid effect (matching hero visual) */
-body .bg-grid-effect {
+body::before {
     content: '';
     position: absolute;
     width: 200%;
@@ -47,7 +47,7 @@ body .bg-grid-effect {
     border-radius: 4px;
     padding: 50px 40px;
     position: relative;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .login-card::before {

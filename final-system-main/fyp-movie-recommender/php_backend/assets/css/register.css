@@ -14,7 +14,7 @@ body {
 }
 
 /* Background grid effect */
-body .bg-grid-effect {
+body::before {
     content: '';
     position: fixed;
     width: 200%;
@@ -48,7 +48,7 @@ body .bg-grid-effect {
     border-radius: 4px;
     padding: 40px;
     position: relative;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .register-card::before {
