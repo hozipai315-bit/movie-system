@@ -18,9 +18,13 @@
     --border-accent: 1px solid #3D0000;
 }
 
-html, body {
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
     overflow-x: hidden;
-    width: 100%;
     margin: 0;
     padding: 0;
 }

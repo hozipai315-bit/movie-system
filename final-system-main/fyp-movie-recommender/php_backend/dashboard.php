@@ -81,7 +81,6 @@ set_page_title("MoodAI | Your Dashboard");
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Stats Bar -->
