@@ -44,9 +44,9 @@ if (!$user_id) {
                         <div class="d-flex">
                             <a href="dashboard.php" class="btn btn-hero-outline btn-lg">Back to Center</a>
                         </div>
-                    </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <div class="row g-3 g-md-4 align-items-stretch">
