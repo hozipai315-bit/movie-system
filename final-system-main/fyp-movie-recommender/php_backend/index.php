@@ -44,17 +44,17 @@ if (empty($marquee_movies)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoodAI | Premium Mood-Based Movie Recommendations</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- CSS Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -87,15 +87,16 @@ if (empty($marquee_movies)) {
 
     <!-- Split Hero Section -->
     <section id="home" class="hero-section">
-        <div class="hero-card" data-aos="zoom-in">
-            <div class="row align-items-center p-3 p-md-5 g-0">
+        <div class="container">
+            <div class="hero-card" data-aos="zoom-in">
+                <div class="row align-items-center p-3 p-md-5 g-0">
                     <div class="col-lg-5 text-center position-relative mb-4 mb-lg-0" data-aos="fade-right">
                         <!-- Decorative small icons -->
                         <i class="bi bi-star-fill decorative-icon icon-1"></i>
                         <i class="bi bi-film decorative-icon icon-2"></i>
                         <i class="bi bi-heart-fill decorative-icon icon-3"></i>
                         <i class="bi bi-play-circle-fill decorative-icon icon-4"></i>
-                        
+
                         <!-- Large Main Icon -->
                         <div class="large-hero-icon">
                             <i class="bi bi-camera-reels"></i>
@@ -124,7 +125,7 @@ if (empty($marquee_movies)) {
                 <span class="section-tag">What We Can Do</span>
                 <h2 class="section-title-premium">Smart Mood Tools</h2>
             </div>
-            
+
             <div class="bento-container">
                 <!-- Large Feature -->
                 <div class="bento-1" data-aos="zoom-in">
@@ -173,15 +174,15 @@ if (empty($marquee_movies)) {
                 <span class="section-tag">Cinematic Library</span>
                 <h2 class="section-title-premium text-white">Our Curated Collection</h2>
             </div>
-            
+
             <?php if (!empty($marquee_movies)): ?>
                 <!-- Single Row Marquee as requested -->
                 <div class="marquee-wrapper">
                     <div class="marquee-content marquee-left">
-                        <?php 
+                        <?php
                         // Duplicate movies to ensure seamless loop
                         $loop_movies = array_merge($marquee_movies, $marquee_movies);
-                        foreach ($loop_movies as $movie): 
+                        foreach ($loop_movies as $movie):
                             $poster_path = $movie['poster_path'];
                             if (strpos($poster_path, 'http') === false) {
                                 $poster = "https://image.tmdb.org/t/p/w500" . $poster_path;
@@ -303,7 +304,7 @@ if (empty($marquee_movies)) {
                     <div class="text-start mb-4">
                         <h4 class="fw-bold mb-1 logo-text">MoodAI<span>.</span></h4>
                     </div>
-                    
+
                     <h2 class="login-title text-white">Welcome Back</h2>
                     <p class="login-subtitle">Login to get your movie recommendations.</p>
 
@@ -316,14 +317,14 @@ if (empty($marquee_movies)) {
                         <label class="form-label-custom">Email</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" name="email" 
+                            <input type="email" class="form-control" id="email" name="email"
                                     placeholder="Email Address" required>
                         </div>
 
                         <label class="form-label-custom">Password</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control" id="password" name="password" 
+                            <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password" required>
                             <button class="toggle-password-btn" type="button" data-target="password">
                                 <i class="bi bi-eye"></i>
@@ -354,7 +355,7 @@ if (empty($marquee_movies)) {
                     <div class="text-start mb-4">
                         <h4 class="fw-bold mb-1 logo-text">MoodAI<span>.</span></h4>
                     </div>
-                    
+
                     <h2 class="register-title text-white">Join Us</h2>
                     <p class="register-subtitle">Create your profile to find movies for your mood.</p>
 
@@ -367,21 +368,21 @@ if (empty($marquee_movies)) {
                         <label class="form-label-custom">Your Name</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-person-circle"></i></span>
-                            <input type="text" class="form-control" id="reg_name" name="name" 
+                            <input type="text" class="form-control" id="reg_name" name="name"
                                     placeholder="Enter your name" required>
                         </div>
-                        
+
                         <label class="form-label-custom">Email Address</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control" id="reg_email" name="email" 
+                            <input type="email" class="form-control" id="reg_email" name="email"
                                     placeholder="Email Address" required>
                         </div>
 
                         <label class="form-label-custom">Password</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control" id="reg_password" name="password" 
+                            <input type="password" class="form-control" id="reg_password" name="password"
                                     placeholder="8+ characters" required>
                             <button class="toggle-password-btn" type="button" data-target="reg_password">
                                 <i class="bi bi-eye"></i>
@@ -391,7 +392,7 @@ if (empty($marquee_movies)) {
                         <label class="form-label-custom">Confirm Password</label>
                         <div class="input-group-premium">
                             <span class="input-icon"><i class="bi bi-shield-lock"></i></span>
-                            <input type="password" class="form-control" id="reg_confirm_password" name="confirm_password" 
+                            <input type="password" class="form-control" id="reg_confirm_password" name="confirm_password"
                                     placeholder="Re-enter Password" required>
                             <button class="toggle-password-btn" type="button" data-target="reg_confirm_password">
                                 <i class="bi bi-eye"></i>
@@ -451,11 +452,11 @@ if (empty($marquee_movies)) {
                     } else {
                         const loginAlert = document.getElementById('loginAlert');
                         const loginError = document.getElementById('loginErrorMessage');
-                        
+
                         loginAlert.classList.remove('alert-danger', 'd-none');
                         loginAlert.classList.add('alert-success');
                         loginError.textContent = data.message;
-                        
+
                         bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
                         new bootstrap.Modal(document.getElementById('loginModal')).show();
                     }
