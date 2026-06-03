@@ -1,4 +1,8 @@
-from faster_whisper import WhisperModel
+try:
+    from faster_whisper import WhisperModel
+except ImportError:
+    WhisperModel = None
+
 from pydub import AudioSegment
 import os
 import sys
@@ -12,12 +16,13 @@ from services.text_emotion import detect_mood_level2
 
 # Initialize Faster-Whisper Model (Tiny on CPU with INT8)
 # We initialize it once at module level for efficiency
-try:
-    # Use tiny model, CPU, and int8 as requested
-    model = WhisperModel("tiny", device="cpu", compute_type="int8")
-except Exception as e:
-    print(f"Error loading Whisper model: {e}")
-    model = None
+model = None
+if WhisperModel:
+    try:
+        # Use tiny model, CPU, and int8 as requested
+        model = WhisperModel("tiny", device="cpu", compute_type="int8")
+    except Exception as e:
+        print(f"Error loading Whisper model: {e}")
 
 def detect_voice_mood(audio_file_path):
     """

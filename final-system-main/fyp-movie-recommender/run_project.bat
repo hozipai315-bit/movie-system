@@ -6,7 +6,7 @@ echo ===================================================
 echo.
 echo [1/2] Starting Python AI Backend...
 echo (Ensure Python is installed and added to PATH)
-start cmd /k "cd python_ai_backend && python app.py"
+start cmd /k "cd python_ai_backend && echo Installing dependencies... && pip install -r requirements.txt && python app.py"
 
 echo.
 echo [2/2] Checking for XAMPP...
