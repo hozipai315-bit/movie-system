@@ -134,7 +134,8 @@ $url = $valid_python_host . $python_endpoint;
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 15); // Increased timeout for face/audio
+curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Increased timeout for face/audio/transcription
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
 if ($is_multipart) {
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);

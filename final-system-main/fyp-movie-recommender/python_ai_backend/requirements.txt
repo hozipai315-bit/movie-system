@@ -11,3 +11,4 @@ deepface
 requests
 mysql-connector-python
 python-dotenv
+faster-whisper
