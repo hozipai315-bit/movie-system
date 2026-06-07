@@ -34,15 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (filterValue === 'all' || itemMood === filterValue) {
                     item.style.display = 'block';
-                    // Re-trigger animation
-                    item.style.animation = 'none';
-                    void item.offsetWidth; // trigger reflow
-                    item.style.animation = null;
                     visibleCount++;
                 } else {
                     item.style.display = 'none';
                 }
             });
+
+            // Refresh AOS to detect newly visible elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
 
             // Update record count display for visual consistency
             if (recordCountDisplay) {
@@ -136,6 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial reveal staggered animation
     document.querySelectorAll('.favorite-item').forEach((item, index) => {
-        item.style.animationDelay = `${0.05 * index}s`;
+        // No manual delay needed as we use AOS attributes
     });
 });
