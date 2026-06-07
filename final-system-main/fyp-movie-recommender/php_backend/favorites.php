@@ -15,7 +15,17 @@ if (!$user_id) {
 
 $favorite_movies = [];
 try {
-    $stmt = $pdo->prepare("SELECT id, tmdb_movie_id, movie_title, movie_poster, vote_average, overview, mood_tag FROM user_favorites WHERE user_id = ? ORDER BY saved_at DESC");
+    // Check if new columns exist to prevent query failure
+    $check_columns = $pdo->query("SHOW COLUMNS FROM user_favorites LIKE 'vote_average'")->fetch();
+
+    if ($check_columns) {
+        $query = "SELECT id, tmdb_movie_id, movie_title, movie_poster, vote_average, overview, mood_tag FROM user_favorites WHERE user_id = ? ORDER BY saved_at DESC";
+    } else {
+        // Fallback for older database versions
+        $query = "SELECT id, tmdb_movie_id, movie_title, movie_poster, 0.0 as vote_average, '' as overview, mood_tag FROM user_favorites WHERE user_id = ? ORDER BY saved_at DESC";
+    }
+
+    $stmt = $pdo->prepare($query);
     $stmt->execute([$user_id]);
     $favorite_movies = $stmt->fetchAll();
 } catch (PDOException $e) {
@@ -88,11 +98,14 @@ try {
                 <?php else: ?>
 
                     <?php foreach ($favorite_movies as $index => $movie): ?>
-                        <?php $delay = ($index % 8) * 100; ?>
+                        <?php
+                            $delay = ($index % 8) * 100;
+                            $anim = ($index % 2 == 0) ? 'fade-right' : 'fade-left';
+                        ?>
                         <div class="col-6 col-md-4 col-lg-3 favorite-item animate-reveal"
                              data-movie-id="<?php echo htmlspecialchars($movie['tmdb_movie_id']); ?>"
                              data-mood="<?php echo strtolower($movie['mood_tag']); ?>"
-                             data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
+                             data-aos="<?php echo $anim; ?>" data-aos-delay="<?php echo $delay; ?>">
 
                             <div class="movie-card">
                                 <!-- Mood Badge -->
