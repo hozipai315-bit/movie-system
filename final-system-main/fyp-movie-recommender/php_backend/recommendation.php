@@ -152,29 +152,80 @@ set_page_title("Recommended Movies - MoodAI Rec.");
 
     <!-- Integrated Filter Interface -->
     <section class="filter-section-premium mb-5" data-aos="fade-up">
-        <div class="filter-glass-bar p-3">
+        <div class="filter-glass-bar p-3 mb-3">
             <div class="row align-items-center g-3">
                 <div class="col-md-auto">
                     <div class="filter-label px-3 border-end border-dark">
-                        <i class="bi bi-sliders2-vertical me-2" style="color: var(--accent-red);"></i>
-                        FILTERS
+                        <i class="bi bi-globe me-2" style="color: var(--accent-red);"></i>
+                        REGION
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="small text-muted me-2 d-none d-lg-inline-block align-self-center">Region:</span>
                         <a href="?region=Hollywood&sort=<?php echo $current_sort; ?>" class="filter-btn <?php echo $current_region === 'Hollywood' ? 'active' : ''; ?>">Hollywood</a>
                         <a href="?region=Bollywood&sort=<?php echo $current_sort; ?>" class="filter-btn <?php echo $current_region === 'Bollywood' ? 'active' : ''; ?>">Bollywood</a>
                         <a href="?region=South Indian&sort=<?php echo $current_sort; ?>" class="filter-btn <?php echo $current_region === 'South Indian' ? 'active' : ''; ?>">South India</a>
                         <a href="?region=International&sort=<?php echo $current_sort; ?>" class="filter-btn <?php echo $current_region === 'International' ? 'active' : ''; ?>">International</a>
                     </div>
                 </div>
-                <div class="col-md-auto border-start border-dark d-none d-md-block">
-                    <div class="d-flex gap-2 px-3">
-                        <span class="small text-muted align-self-center">Sort:</span>
-                        <a href="?region=<?php echo urlencode($current_region); ?>&sort=popularity.desc" class="filter-btn <?php echo $current_sort === 'popularity.desc' ? 'active' : ''; ?>">Popular</a>
-                        <a href="?region=<?php echo urlencode($current_region); ?>&sort=vote_average.desc" class="filter-btn <?php echo $current_sort === 'vote_average.desc' ? 'active' : ''; ?>">Rating</a>
+            </div>
+        </div>
+
+        <!-- Live Filters Bar -->
+        <div class="filter-glass-bar p-4">
+            <div class="row g-4">
+                <!-- Search Bar -->
+                <div class="col-lg-12">
+                    <div class="search-container-premium">
+                        <i class="bi bi-search search-icon-live"></i>
+                        <input type="text" id="liveSearch" class="form-control live-search-input" placeholder="Search by movie title...">
                     </div>
+                </div>
+
+                <!-- Mood Filter -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="filter-sublabel mb-3">Filter by Mood</label>
+                    <div class="d-flex flex-wrap gap-2" id="moodFilters">
+                        <button class="pill-filter active" data-mood="all">All</button>
+                        <button class="pill-filter" data-mood="Happy">Happy</button>
+                        <button class="pill-filter" data-mood="Sad">Sad</button>
+                        <button class="pill-filter" data-mood="Angry">Angry</button>
+                        <button class="pill-filter" data-mood="Excited">Excited</button>
+                        <button class="pill-filter" data-mood="Neutral">Neutral</button>
+                    </div>
+                </div>
+
+                <!-- Genre Filter -->
+                <div class="col-md-6 col-lg-5">
+                    <label class="filter-sublabel mb-3">Filter by Genre (Multi-select)</label>
+                    <div class="d-flex flex-wrap gap-2" id="genreFilters">
+                        <button class="pill-filter active" data-genre="all">All</button>
+                        <button class="pill-filter" data-genre="28">Action</button>
+                        <button class="pill-filter" data-genre="35">Comedy</button>
+                        <button class="pill-filter" data-genre="18">Drama</button>
+                        <button class="pill-filter" data-genre="27">Horror</button>
+                        <button class="pill-filter" data-genre="10749">Romance</button>
+                        <button class="pill-filter" data-genre="53">Thriller</button>
+                        <button class="pill-filter" data-genre="878">Sci-Fi</button>
+                    </div>
+                </div>
+
+                <!-- Sort By -->
+                <div class="col-md-6 col-lg-3">
+                    <label class="filter-sublabel mb-3">Sort Results</label>
+                    <select id="liveSort" class="form-select premium-select">
+                        <option value="best">Best Match</option>
+                        <option value="rating">Rating High to Low</option>
+                        <option value="newest">Newest First</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="col-12 text-end">
+                    <button id="resetFilters" class="btn btn-reset-premium">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset All Filters
+                    </button>
                 </div>
             </div>
         </div>
@@ -206,14 +257,31 @@ set_page_title("Recommended Movies - MoodAI Rec.");
                     </span>
                 </div>
 
+                <div id="noMoviesFound" class="alert alert-system text-center py-5 d-none" data-aos="zoom-in">
+                    <i class="bi bi-search display-4 mb-3 d-block"></i>
+                    <h4 class="fw-bold">NO MOVIES FOUND</h4>
+                    <p class="mb-2">No movies found matching your selected filters.</p>
+                    <p class="mb-0 small text-muted">Try adjusting your filters or resetting them.</p>
+                </div>
+
                 <div id="movieGrid" class="row g-4 movie-grid">
 
                     <?php foreach ($recommended_movies as $index => $movie): ?>
                         <?php 
                             $delay = ($index % 8) * 100; 
                             $match_score = 95 + (rand(0, 40) / 10); // Random score between 95 and 99
+                            $movie_genres = isset($movie['genre_ids']) ? implode(',', $movie['genre_ids']) : '';
+                            $movie_date = $movie['release_date'] ?? '';
                         ?>
-                        <div class="col-6 col-md-4 col-lg-3 movie-card-col" data-movie-id="<?php echo htmlspecialchars($movie['id']); ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
+                        <div class="col-6 col-md-4 col-lg-3 movie-card-col"
+                             data-movie-id="<?php echo htmlspecialchars($movie['id']); ?>"
+                             data-title="<?php echo htmlspecialchars(strtolower($movie['title'])); ?>"
+                             data-genres="<?php echo htmlspecialchars($movie_genres); ?>"
+                             data-release-date="<?php echo htmlspecialchars($movie_date); ?>"
+                             data-rating="<?php echo htmlspecialchars($movie['vote_average']); ?>"
+                             data-mood="<?php echo htmlspecialchars($last_detected_mood); ?>"
+                             data-aos="fade-up"
+                             data-aos-delay="<?php echo $delay; ?>">
                             <div class="movie-card">
                                 <!-- Neural Badge -->
                                 <div class="match-score-badge"><?php echo number_format($match_score, 1); ?>% MATCH</div>
