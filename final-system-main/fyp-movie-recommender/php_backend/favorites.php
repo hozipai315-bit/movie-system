@@ -22,6 +22,7 @@ try {
     error_log("Database Error in favorites.php: " . $e->getMessage());
 }
 ?>
+<link rel="stylesheet" href="assets/css/recommendation.css">
 <link rel="stylesheet" href="assets/css/favorites.css">
 
 <main class="container pb-5 fade-in-section">
@@ -71,60 +72,78 @@ try {
     </section>
 
     <div class="row justify-content-center">
-        <div class="col-lg-11">
+        <div class="col-lg-12">
 
-            <div id="favoritesContainer">
-
-                <?php if (empty($favorite_movies)): ?>
+            <?php if (empty($favorite_movies)): ?>
+                <div id="favoritesContainer">
                     <div class="empty-archive animate-reveal">
                         <i class="bi bi-film text-bright-red mb-3 d-block" style="font-size: 3rem;"></i>
                         <h4 class="fw-bold text-white">No Favorites Yet</h4>
                         <p class="text-white small mb-4">You haven't saved any movies to your favorites list yet.</p>
                         <a href="dashboard.php" class="btn btn-initiate mt-2">Find Movies</a>
                     </div>
-                <?php else: ?>
+                </div>
+            <?php else: ?>
 
-                    <?php foreach ($favorite_movies as $movie): ?>
-                        <div class="favorite-item animate-reveal" 
+                <div class="d-flex justify-content-between align-items-center mb-4 px-2" data-aos="fade-right">
+                    <h5 class="fw-bold text-white mb-0" style="letter-spacing: 2px;">SAVED FAVORITES</h5>
+                    <span id="recordCount" class="text-muted small" style="font-family: 'Inter', sans-serif;">
+                        <?php echo count($favorite_movies); ?> MOVIES
+                    </span>
+                </div>
+
+                <div id="favoritesContainer" class="row g-4 movie-grid">
+                    <?php foreach ($favorite_movies as $index => $movie): ?>
+                        <?php
+                            $delay = ($index % 8) * 100;
+                        ?>
+                        <div class="col-6 col-md-4 col-lg-3 favorite-item animate-reveal"
                              data-movie-id="<?php echo htmlspecialchars($movie['tmdb_movie_id']); ?>"
-                             data-mood="<?php echo strtolower($movie['mood_tag']); ?>">
-                            <div class="favorite-card">
-                                <div class="card-body d-flex align-items-center gap-4">
-                                    
-                                    <!-- Poster -->
-                                    <div class="favorite-poster-wrapper flex-shrink-0">
-                                        <img src="<?php echo htmlspecialchars($movie['movie_poster']); ?>" 
-                                             alt="Poster" 
-                                             class="favorite-poster"
-                                             onerror="this.src='assets/img/no_poster.jpg';">
+                             data-mood="<?php echo strtolower($movie['mood_tag']); ?>"
+                             data-aos="fade-up"
+                             data-aos-delay="<?php echo $delay; ?>">
+                            <div class="movie-card">
+                                <!-- Mood Badge -->
+                                <div class="match-score-badge"><?php echo strtoupper($movie['mood_tag']); ?> MOOD</div>
+
+                                <div class="card-img-top-wrapper">
+                                    <img src="<?php echo htmlspecialchars($movie['movie_poster']); ?>"
+                                         class="movie-poster"
+                                         alt="<?php echo htmlspecialchars($movie['movie_title']); ?> Poster"
+                                         loading="lazy"
+                                         onerror="this.src='assets/img/no_poster.jpg';">
+
+                                    <!-- Hover Overlay -->
+                                    <div class="poster-overlay">
+                                        <div class="overlay-content text-center">
+                                            <p class="movie-overview-short">Movie saved based on your <?php echo strtolower($movie['mood_tag']); ?> mood history.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <span class="text-muted" style="font-size: 0.55rem; font-family: 'Inter', sans-serif; letter-spacing: 1px;">Entry ID: #<?php echo str_pad($movie['id'], 6, '0', STR_PAD_LEFT); ?></span>
+                                    <h5 class="movie-title text-truncate" title="<?php echo htmlspecialchars($movie['movie_title']); ?>">
+                                        <?php echo htmlspecialchars($movie['movie_title']); ?>
+                                    </h5>
+
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="rating-tech">
+                                            <i class="bi bi-tag-fill me-1"></i> <?php echo strtoupper($movie['mood_tag']); ?>
+                                        </span>
+                                        <span class="status-optimal animate-flicker">SAVED</span>
                                     </div>
 
-                                    <!-- Details -->
-                                    <div class="flex-grow-1">
-                                        <span class="archive-id">MOVIE ID: #<?php echo str_pad($movie['id'], 6, '0', STR_PAD_LEFT); ?></span>
-                                        <h4 class="fw-bold text-white mb-1"><?php echo htmlspecialchars($movie['movie_title']); ?></h4>
-                                        <span class="mood-tag-tech">MOOD: <?php echo strtoupper($movie['mood_tag']); ?></span>
-                                        <p class="text-white small mt-2 mb-0 d-none d-md-block fw-bold">
-                                            Movie saved based on your mood history.
-                                        </p>
-                                    </div>
-
-                                    <!-- Actions -->
-                                    <div class="favorite-actions ms-auto">
-                                        <button class="btn btn-remove-tech remove-btn"
-                                                data-movie-id="<?php echo htmlspecialchars($movie['tmdb_movie_id']); ?>">
-                                            <i class="bi bi-trash-fill me-1 text-bright-red"></i> Remove
-                                        </button>
-                                    </div>
-
+                                    <button class="btn btn-sync remove-btn"
+                                            data-movie-id="<?php echo htmlspecialchars($movie['tmdb_movie_id']); ?>">
+                                        <i class="bi bi-trash-fill me-1"></i> REMOVE FROM LIST
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
-
-                <?php endif; ?>
-
-            </div>
+                </div>
+            <?php endif; ?>
 
         </div>
     </div>
