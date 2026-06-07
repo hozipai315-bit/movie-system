@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Re-trigger animation
                     item.style.animation = 'none';
                     void item.offsetWidth; // trigger reflow
-                    item.style.animation = null; 
+                    item.style.animation = null;
                     visibleCount++;
                 } else {
                     item.style.display = 'none';
@@ -119,11 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkEmptyState() {
         const remainingItems = document.querySelectorAll('.favorite-item').length;
-        
+
         if (remainingItems === 0 && favoritesContainer) {
             favoritesContainer.innerHTML = `
+                <div class="col-12">
                     <div class="empty-archive animate-reveal">
-                        <i class="bi bi-film text-danger mb-3 d-block" style="font-size: 3rem;"></i>
+                        <i class="bi bi-film text-bright-red mb-3 d-block" style="font-size: 3rem;"></i>
                         <h4 class="fw-bold text-white">No Favorites Yet</h4>
                         <p class="text-white small mb-4">You haven't saved any movies to your favorites list yet.</p>
                         <a href="dashboard.php" class="btn btn-initiate mt-2">Find Movies</a>
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
     }
-    
+
     // Initial reveal staggered animation
     document.querySelectorAll('.favorite-item').forEach((item, index) => {
         item.style.animationDelay = `${0.05 * index}s`;

@@ -14,13 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const movieId = favoriteButton.getAttribute('data-movie-id');
                 const movieTitle = favoriteButton.getAttribute('data-movie-title');
                 const moviePoster = favoriteButton.getAttribute('data-movie-poster');
+                const movieVote = favoriteButton.getAttribute('data-movie-vote');
+                const movieOverview = favoriteButton.getAttribute('data-movie-overview');
 
                 if (localFavorites.has(movieId)) {
                     showToast('Movie Already Saved', `${movieTitle} is already in your favorites!`, 'warning');
                     return;
                 }
 
-                addFavorite(movieId, movieTitle, moviePoster, favoriteButton);
+                addFavorite(movieId, movieTitle, moviePoster, movieVote, movieOverview, favoriteButton);
             }
         });
 
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- 2. Handle Add to Favorites (AJAX/Fetch) ---
-    async function addFavorite(movieId, movieTitle, moviePoster, button) {
+    async function addFavorite(movieId, movieTitle, moviePoster, movieVote, movieOverview, button) {
         const originalText = button.innerHTML;
 
         // Show loading state with High-Tech "Syncing" feel
@@ -57,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('movie_id', movieId);
             formData.append('title', movieTitle);
             formData.append('poster', moviePoster);
+            formData.append('vote_average', movieVote);
+            formData.append('overview', movieOverview);
 
             const response = await fetch('api/save_favorite.php', {
                 method: 'POST',
