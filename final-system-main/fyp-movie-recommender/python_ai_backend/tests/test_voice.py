@@ -56,7 +56,7 @@ def run_voice_tests():
             "name": "Loud Audio (Excited/Angry Tone) + No Text",
             "path": loud_path,
             "transcription": "",
-            "expected_mood": "Neutral" # instruction: text < 0.3 energy -> 0.7 Neutral. 0.7 wins over 0.3*intensity.
+            "expected_mood": "Neutral"
         }
     ]
 
@@ -64,8 +64,13 @@ def run_voice_tests():
         mock_segment = MagicMock()
         mock_segment.text = case['transcription']
 
+        # Mock info object
+        mock_info = MagicMock()
+        mock_info.language = "en"
+        mock_info.language_probability = 1.0
+
         with patch('services.voice_emotion.model.transcribe') as mock_transcribe:
-            mock_transcribe.return_value = ([mock_segment], None)
+            mock_transcribe.return_value = ([mock_segment], mock_info)
 
             final_mood, transcribed_text, mood_votes = detect_voice_mood(case['path'])
 
