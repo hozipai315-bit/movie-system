@@ -6,6 +6,159 @@ document.addEventListener('DOMContentLoaded', function() {
     // In production, this would be fetched from the database on page load.
     let localFavorites = new Set();
 
+    // --- 0. Live Filtering Logic ---
+    const liveSearch = document.getElementById('liveSearch');
+    const moodFilters = document.getElementById('moodFilters');
+    const genreFilters = document.getElementById('genreFilters');
+    const liveSort = document.getElementById('liveSort');
+    const resetFilters = document.getElementById('resetFilters');
+    const noMoviesFound = document.getElementById('noMoviesFound');
+    const movieCards = Array.from(document.querySelectorAll('.movie-card-col'));
+
+    let activeMood = 'all';
+    let activeGenres = new Set(['all']);
+
+    function filterMovies() {
+        const searchTerm = liveSearch.value.toLowerCase();
+        let visibleCount = 0;
+
+        movieCards.forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const mood = card.getAttribute('data-mood') || '';
+            const genres = (card.getAttribute('data-genres') || '').split(',');
+
+            const matchesSearch = title.includes(searchTerm);
+            const matchesMood = (activeMood === 'all' || mood === activeMood);
+
+            let matchesGenre = false;
+            if (activeGenres.has('all')) {
+                matchesGenre = true;
+            } else {
+                // OR Logic for multi-select genres
+                matchesGenre = genres.some(g => activeGenres.has(g));
+            }
+
+            if (matchesSearch && matchesMood && matchesGenre) {
+                card.style.display = '';
+                setTimeout(() => card.classList.remove('opacity-0'), 10);
+                visibleCount++;
+            } else {
+                card.classList.add('opacity-0');
+                setTimeout(() => {
+                    if (card.classList.contains('opacity-0')) {
+                        card.style.display = 'none';
+                    }
+                }, 400);
+            }
+        });
+
+        // Toggle No Movies Found message
+        if (visibleCount === 0) {
+            noMoviesFound.classList.remove('d-none');
+            movieGrid.classList.add('d-none');
+        } else {
+            noMoviesFound.classList.add('d-none');
+            movieGrid.classList.remove('d-none');
+        }
+    }
+
+    function sortMovies() {
+        const sortBy = liveSort.value;
+        const sortedCards = [...movieCards];
+
+        sortedCards.sort((a, b) => {
+            if (sortBy === 'rating') {
+                return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
+            } else if (sortBy === 'newest') {
+                return new Date(b.getAttribute('data-release-date')) - new Date(a.getAttribute('data-release-date'));
+            } else if (sortBy === 'title') {
+                return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+            } else {
+                // Best Match (Original Order)
+                return parseInt(movieCards.indexOf(a)) - parseInt(movieCards.indexOf(b));
+            }
+        });
+
+        // Re-append sorted cards
+        sortedCards.forEach(card => movieGrid.appendChild(card));
+    }
+
+    // Event Listeners for Filters
+    if (liveSearch) {
+        liveSearch.addEventListener('input', filterMovies);
+    }
+
+    if (moodFilters) {
+        moodFilters.addEventListener('click', (e) => {
+            if (e.target.classList.contains('pill-filter')) {
+                moodFilters.querySelectorAll('.pill-filter').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                activeMood = e.target.getAttribute('data-mood');
+                filterMovies();
+            }
+        });
+    }
+
+    if (genreFilters) {
+        genreFilters.addEventListener('click', (e) => {
+            if (e.target.classList.contains('pill-filter')) {
+                const genre = e.target.getAttribute('data-genre');
+
+                if (genre === 'all') {
+                    activeGenres.clear();
+                    activeGenres.add('all');
+                    genreFilters.querySelectorAll('.pill-filter').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                } else {
+                    activeGenres.delete('all');
+                    genreFilters.querySelector('[data-genre="all"]').classList.remove('active');
+
+                    if (activeGenres.has(genre)) {
+                        activeGenres.delete(genre);
+                        e.target.classList.remove('active');
+                    } else {
+                        activeGenres.add(genre);
+                        e.target.classList.add('active');
+                    }
+
+                    if (activeGenres.size === 0) {
+                        activeGenres.add('all');
+                        genreFilters.querySelector('[data-genre="all"]').classList.add('active');
+                    }
+                }
+                filterMovies();
+            }
+        });
+    }
+
+    if (liveSort) {
+        liveSort.addEventListener('change', sortMovies);
+    }
+
+    if (resetFilters) {
+        resetFilters.addEventListener('click', () => {
+            // Reset Search
+            liveSearch.value = '';
+
+            // Reset Mood
+            activeMood = 'all';
+            moodFilters.querySelectorAll('.pill-filter').forEach(btn => btn.classList.remove('active'));
+            moodFilters.querySelector('[data-mood="all"]').classList.add('active');
+
+            // Reset Genre
+            activeGenres.clear();
+            activeGenres.add('all');
+            genreFilters.querySelectorAll('.pill-filter').forEach(btn => btn.classList.remove('active'));
+            genreFilters.querySelector('[data-genre="all"]').classList.add('active');
+
+            // Reset Sort
+            liveSort.value = 'best';
+
+            filterMovies();
+            sortMovies();
+        });
+    }
+
     // --- 1. Event Listener for 'Add to Favorites' Buttons ---
     if (movieGrid) {
         movieGrid.addEventListener('click', function(e) {

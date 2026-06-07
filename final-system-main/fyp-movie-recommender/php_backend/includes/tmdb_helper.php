@@ -62,6 +62,8 @@ function format_movie_data($movie) {
         'title' => $movie['title'],
         'vote_average' => $movie['vote_average'],
         'overview' => $movie['overview'],
+        'release_date' => $movie['release_date'] ?? '',
+        'genre_ids' => $movie['genre_ids'] ?? [],
         'poster_path' => !empty($movie['poster_path'])
             ? 'https://image.tmdb.org/t/p/w500' . $movie['poster_path']
             : 'assets/img/no_poster.jpg'
