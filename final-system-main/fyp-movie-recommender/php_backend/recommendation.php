@@ -254,7 +254,9 @@ set_page_title("Recommended Movies - MoodAI Rec.");
                                         <button class="btn btn-sync favorite-btn"
                                                 data-movie-id="<?php echo htmlspecialchars($movie['id']); ?>"
                                                 data-movie-title="<?php echo htmlspecialchars($movie['title']); ?>"
-                                                data-movie-poster="<?php echo htmlspecialchars($movie['poster_path']); ?>">
+                                                data-movie-poster="<?php echo htmlspecialchars($movie['poster_path']); ?>"
+                                                data-movie-vote="<?php echo htmlspecialchars($movie['vote_average']); ?>"
+                                                data-movie-overview="<?php echo htmlspecialchars($movie['overview']); ?>">
                                             <i class="bi bi-heart me-1"></i> SAVE TO FAVORITES
                                         </button>
                                     <?php endif; ?>

@@ -88,6 +88,8 @@ CREATE TABLE IF NOT EXISTS `user_favorites` (
   `tmdb_movie_id` int(11) NOT NULL,
   `movie_title` varchar(255) NOT NULL,
   `movie_poster` varchar(255) DEFAULT NULL,
+  `vote_average` decimal(3,1) DEFAULT 0.0,
+  `overview` text DEFAULT NULL,
   `mood_tag` varchar(20) DEFAULT NULL, -- The mood associated with this recommendation
   `saved_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

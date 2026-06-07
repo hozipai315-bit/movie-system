@@ -28,6 +28,8 @@ $user_id = $_SESSION['user_id'];
 $movie_id = $_POST['movie_id'] ?? null;
 $title = $_POST['title'] ?? null;
 $poster = $_POST['poster'] ?? null;
+$vote_average = $_POST['vote_average'] ?? 0.0;
+$overview = $_POST['overview'] ?? '';
 $mood = $_POST['mood'] ?? $_SESSION['last_detected_mood'] ?? 'Unknown';
 
 if (!$movie_id || !$title) {
@@ -47,8 +49,8 @@ try {
         exit();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO user_favorites (user_id, tmdb_movie_id, movie_title, movie_poster, mood_tag) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$user_id, $movie_id, $title, $poster, $mood]);
+    $stmt = $pdo->prepare("INSERT INTO user_favorites (user_id, tmdb_movie_id, movie_title, movie_poster, vote_average, overview, mood_tag) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$user_id, $movie_id, $title, $poster, $vote_average, $overview, $mood]);
 
     echo json_encode(['status' => 'success', 'message' => 'Movie added to favorites!']);
 } catch (PDOException $e) {
