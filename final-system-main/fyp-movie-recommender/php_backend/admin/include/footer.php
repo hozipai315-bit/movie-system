@@ -27,10 +27,10 @@
                 <div class="col-lg-4 col-md-4">
                     <h6 class="footer-title">System Health</h6>
                     <div class="footer-health-item">
-                        <span class="dot pulse-green"></span> Core Engine: Operational
+                        Core Engine: Operational
                     </div>
                     <div class="footer-health-item">
-                        <span class="dot pulse-green"></span> Database: Optimized
+                        Database: Optimized
                     </div>
                     <p class="mt-3 small opacity-75">Last Synchronized: <?php echo date('M d, Y - H:i'); ?></p>
                 </div>

@@ -71,7 +71,6 @@ if ($pdo) {
             <i class="bi bi-broadcast-pin"></i>
         </div>
         <div class="system-status-pill mb-3">
-            <span class="status-dot"></span>
             SYSTEM STATUS: ONLINE
         </div>
         <h1 class="hero-welcome">Welcome back, <?php echo htmlspecialchars($admin_username); ?>.</h1>
