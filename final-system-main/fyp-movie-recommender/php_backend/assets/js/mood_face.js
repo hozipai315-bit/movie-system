@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 document.getElementById('modalMoodIcon').className = `bi ${moodIcons[result.mood] || 'bi-emoji-expressionless'} display-1`;
                 document.getElementById('modalMoodText').textContent = result.mood.toUpperCase();
-                document.getElementById('modalConfidence').textContent = (result.confidence * 100).toFixed(1) + "%";
+                document.getElementById('modalConfidence').textContent = result.mood.toUpperCase();
                 document.getElementById('modalProceedBtn').setAttribute('href', result.redirect_url);
 
                 // Show Modal

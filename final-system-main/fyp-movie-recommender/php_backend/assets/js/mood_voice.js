@@ -159,13 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Surprise': 'bi-emoji-surprise',
                     'Neutral': 'bi-emoji-neutral'
                 };
-                
+
                 document.getElementById('modalMoodIcon').className = `bi ${moodIcons[result.mood] || 'bi-emoji-expressionless'} display-1`;
                 document.getElementById('modalMoodText').textContent = result.mood.toUpperCase();
-                
-                // Confidence display with fallback
-                const confidence = result.confidence ? (result.confidence * 100).toFixed(1) + "%" : "98.4%";
-                document.getElementById('modalConfidence').textContent = confidence;
+
+                // Display detected mood name
+                document.getElementById('modalConfidence').textContent = result.mood.toUpperCase();
                 document.getElementById('modalProceedBtn').setAttribute('href', result.redirect_url);
 
                 // Show Modal
