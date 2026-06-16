@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = userTextarea.value.trim();
         const tokens = text === "" ? 0 : text.split(/\s+/).length;
         mTokens.textContent = tokens;
-        
+
         if (tokens > 0) {
             mIntegrity.textContent = tokens > 10 ? "Good" : "Too Short";
             mIntegrity.style.color = tokens > 10 ? "#00FF00" : "#FFA500";
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         statusMessage.classList.remove('d-none');
         statusMessage.textContent = "Analyzing Your Text...";
         statusMessage.className = "mt-3 small fw-bold text-muted text-uppercase tracking-wider text-center";
-        
+
         mSentiment.textContent = "Finding...";
 
         sendTextToBackend(text);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.ok && result.status === 'success') {
                 statusMessage.textContent = "Analysis Complete";
                 statusMessage.className = "mt-3 small fw-bold text-success text-uppercase tracking-wider text-center";
-                
+
                 mSentiment.textContent = "Found";
                 mSentiment.style.color = "#00FF00";
 
@@ -82,19 +82,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Surprise': 'bi-emoji-surprise',
                     'Neutral': 'bi-emoji-neutral'
                 };
-                
+
                 document.getElementById('modalMoodIcon').className = `bi ${moodIcons[result.mood] || 'bi-emoji-expressionless'} display-1`;
                 document.getElementById('modalMoodText').textContent = result.mood.toUpperCase();
-                
-                // Confidence display with fallback for types that don't return it
-                const confidence = result.confidence ? (result.confidence * 100).toFixed(1) + "%" : "98.4%";
-                document.getElementById('modalConfidence').textContent = confidence;
+
+                // Display detected mood name
+                document.getElementById('modalConfidence').textContent = result.mood.toUpperCase();
                 document.getElementById('modalProceedBtn').setAttribute('href', result.redirect_url);
 
                 // Show Modal
                 const moodModal = new bootstrap.Modal(document.getElementById('moodResultModal'));
                 moodModal.show();
-                
+
                 // Re-enable UI if user closes modal to try again
                 document.getElementById('moodResultModal').addEventListener('hidden.bs.modal', function () {
                     analyzeButton.disabled = false;

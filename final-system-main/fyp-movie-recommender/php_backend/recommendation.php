@@ -211,12 +211,9 @@ set_page_title("Recommended Movies - MoodAI Rec.");
                     <?php foreach ($recommended_movies as $index => $movie): ?>
                         <?php 
                             $delay = ($index % 8) * 100; 
-                            $match_score = 95 + (rand(0, 40) / 10); // Random score between 95 and 99
                         ?>
                         <div class="col-6 col-md-4 col-lg-3 movie-card-col" data-movie-id="<?php echo htmlspecialchars($movie['id']); ?>" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
                             <div class="movie-card">
-                                <!-- Neural Badge -->
-                                <div class="match-score-badge"><?php echo number_format($match_score, 1); ?>% MATCH</div>
 
                                 <div class="card-img-top-wrapper">
                                     <img src="<?php echo htmlspecialchars($movie['poster_path']); ?>"

@@ -102,8 +102,8 @@ if (!$is_guest) {
 
                 <div class="system-readout mb-4">
                     <div class="readout-item">
-                        <span class="label">Confidence</span>
-                        <span class="value" id="modalConfidence">98.4%</span>
+                        <span class="label">Mood Detected</span>
+                        <span class="value" id="modalConfidence">ANALYZED</span>
                     </div>
                     <div class="readout-item">
                         <span class="label">Status</span>
