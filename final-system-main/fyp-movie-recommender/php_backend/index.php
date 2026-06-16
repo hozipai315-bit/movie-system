@@ -287,7 +287,7 @@ if (empty($marquee_movies)) {
             <p class="small mb-4 animate-reveal" style="color: var(--text-white); opacity: 0.8;">Redefining movie discovery through the lens of high-fidelity neural intelligence and human-centric emotional mapping.</p>
             <hr class="my-4 border-dark" style="opacity: 0.1;">
             <div class="small animate-reveal" style="color: var(--text-white); opacity: 0.6;">
-                &copy; <?php echo date("Y"); ?> MoodAI. Engineered for high-performance cinematic resolution and emotional synchronization.
+                &copy; <?php echo date("Y"); ?> MoodAI.
             </div>
         </div>
     </footer>
