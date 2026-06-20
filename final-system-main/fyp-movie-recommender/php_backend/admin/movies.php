@@ -23,8 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
 
                 $stmt = $pdo->prepare("INSERT INTO mood_genre_mapping (mood_id, mood_name, genre_id, genre_name, weight)
                                        VALUES (:mid, :mname, :gid, :gname, :w)
-                                       ON DUPLICATE KEY UPDATE weight = :w, genre_name = :gname");
-                $stmt->execute(['mid' => $mood_id, 'mname' => $mood_name, 'gid' => $genre_id, 'gname' => $genre_name, 'w' => $weight]);
+                                       ON DUPLICATE KEY UPDATE weight = :up_w, genre_name = :up_gname");
+                $stmt->execute([
+                    'mid'       => $mood_id,
+                    'mname'     => $mood_name,
+                    'gid'       => $genre_id,
+                    'gname'     => $genre_name,
+                    'w'         => $weight,
+                    'up_w'      => $weight,
+                    'up_gname'  => $genre_name
+                ]);
                 $message = "Neural link updated for $mood_name -> $genre_name ($weight%)";
                 $message_type = 'success';
             } catch (Exception $e) { $message = $e->getMessage(); $message_type = 'danger'; }
