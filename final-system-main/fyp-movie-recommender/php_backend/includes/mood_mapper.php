@@ -22,8 +22,8 @@ if (!function_exists('get_genre_id_for_mood')) {
 
         if (isset($pdo)) {
             try {
-                // Fetch the highest weighted genre for this mood
-                $stmt = $pdo->prepare("SELECT genre_id FROM mood_genre_mapping WHERE mood_name = ? ORDER BY weight DESC LIMIT 1");
+                // Fetch the mapped genre for this mood
+                $stmt = $pdo->prepare("SELECT genre_id FROM mood_genre_mapping WHERE mood_name = ? LIMIT 1");
                 $stmt->execute([ucfirst(strtolower($mood))]);
                 $db_genre = $stmt->fetchColumn();
                 if ($db_genre) return (int)$db_genre;
