@@ -34,7 +34,7 @@ def get_db_connection():
 
 def query_mapping_from_db(mood_name):
     """
-    Queries the mood_genre_mapping table for the highest weighted genre.
+    Queries the mood_genre_mapping table for the mapped genre.
     """
     connection = get_db_connection()
     if not connection:
@@ -43,7 +43,7 @@ def query_mapping_from_db(mood_name):
     cursor = None
     try:
         cursor = connection.cursor(dictionary=True)
-        query = "SELECT genre_id FROM mood_genre_mapping WHERE mood_name = %s ORDER BY weight DESC LIMIT 1"
+        query = "SELECT genre_id FROM mood_genre_mapping WHERE mood_name = %s LIMIT 1"
         cursor.execute(query, (mood_name.capitalize(),))
         result = cursor.fetchone()
         return result['genre_id'] if result else None
@@ -67,11 +67,11 @@ def query_all_mappings_from_db():
     cursor = None
     try:
         cursor = connection.cursor(dictionary=True)
-        query = "SELECT mood_name, genre_id FROM mood_genre_mapping ORDER BY weight DESC"
+        query = "SELECT mood_name, genre_id FROM mood_genre_mapping"
         cursor.execute(query)
         results = cursor.fetchall()
 
-        # Build a dictionary, later entries for the same mood will be ignored due to DESC weight
+        # Build a dictionary
         mapping = {}
         for row in results:
             if row['mood_name'] not in mapping:

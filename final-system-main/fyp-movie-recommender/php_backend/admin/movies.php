@@ -14,26 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
         $mood_id = (int)($_POST['mood_id'] ?? 0);
         $genre_id = (int)($_POST['genre_id'] ?? 0);
         $genre_name = $_POST['genre_name'] ?? '';
-        $weight = (int)($_POST['weight'] ?? 100);
 
         if ($mood_id && $genre_id) {
             try {
                 // Get mood name first
                 $mood_name = $pdo->query("SELECT mood_name FROM mood_definitions WHERE id = $mood_id")->fetchColumn();
 
-                $stmt = $pdo->prepare("INSERT INTO mood_genre_mapping (mood_id, mood_name, genre_id, genre_name, weight)
-                                       VALUES (:mid, :mname, :gid, :gname, :w)
-                                       ON DUPLICATE KEY UPDATE weight = :up_w, genre_name = :up_gname");
+                $stmt = $pdo->prepare("INSERT INTO mood_genre_mapping (mood_id, mood_name, genre_id, genre_name)
+                                       VALUES (:mid, :mname, :gid, :gname)
+                                       ON DUPLICATE KEY UPDATE genre_id = :up_gid, genre_name = :up_gname");
                 $stmt->execute([
                     'mid'       => $mood_id,
                     'mname'     => $mood_name,
                     'gid'       => $genre_id,
                     'gname'     => $genre_name,
-                    'w'         => $weight,
-                    'up_w'      => $weight,
+                    'up_gid'    => $genre_id,
                     'up_gname'  => $genre_name
                 ]);
-                $message = "Neural link updated for $mood_name -> $genre_name ($weight%)";
+                $message = "Neural link updated for $mood_name -> $genre_name";
                 $message_type = 'success';
             } catch (Exception $e) { $message = $e->getMessage(); $message_type = 'danger'; }
         }
@@ -54,7 +52,7 @@ $fixed_moods = ['Happy', 'Sad', 'Angry', 'Excited', 'Neutral'];
 $in_clause = "'" . implode("','", $fixed_moods) . "'";
 
 $moods = $pdo ? $pdo->query("SELECT * FROM mood_definitions WHERE mood_name IN ($in_clause) ORDER BY FIELD(mood_name, $in_clause)")->fetchAll() : [];
-$mappings = $pdo ? $pdo->query("SELECT m.*, d.mood_name FROM mood_genre_mapping m JOIN mood_definitions d ON m.mood_id = d.id WHERE d.mood_name IN ($in_clause) ORDER BY FIELD(d.mood_name, $in_clause), m.weight DESC")->fetchAll() : [];
+$mappings = $pdo ? $pdo->query("SELECT m.*, d.mood_name FROM mood_genre_mapping m JOIN mood_definitions d ON m.mood_id = d.id WHERE d.mood_name IN ($in_clause) ORDER BY FIELD(d.mood_name, $in_clause)")->fetchAll() : [];
 
 $tmdb_genres = [
     28 => 'Action', 12 => 'Adventure', 16 => 'Animation', 35 => 'Comedy', 80 => 'Crime',
@@ -125,7 +123,7 @@ $tmdb_genres = [
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label small fw-700 opacity-50 text-white">TMDB GENRE</label>
                             <select name="genre_id" class="form-select rounded-3 bg-dark border-secondary text-white" required onchange="updateGenreName(this)">
                                 <?php foreach ($tmdb_genres as $id => $name): ?>
@@ -133,10 +131,6 @@ $tmdb_genres = [
                                 <?php endforeach; ?>
                             </select>
                             <input type="hidden" name="genre_name" id="genreNameInput" value="Action">
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label small fw-700 opacity-50 text-white">STRENGTH %</label>
-                            <input type="number" name="weight" class="form-control rounded-3 bg-dark border-secondary text-white" value="100" min="1" max="100">
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
                             <button type="submit" class="btn btn-primary-admin w-100 rounded-3 py-2 fw-800">LINK</button>
@@ -147,19 +141,13 @@ $tmdb_genres = [
                 <div class="mt-4 table-responsive favorites-scroll-container" style="max-height: 300px;">
                     <table class="table admin-table">
                         <thead class="sticky-top bg-dark">
-                            <tr><th>Mood</th><th>Genre</th><th>Strength</th><th class="text-end">Actions</th></tr>
+                            <tr><th>Mood</th><th>Genre</th><th class="text-end">Actions</th></tr>
                         </thead>
                         <tbody>
                             <?php foreach ($mappings as $row): ?>
                                 <tr>
                                     <td class="fw-800 text-purple text-uppercase"><?php echo htmlspecialchars($row['mood_name']); ?></td>
                                     <td class="text-white"><?php echo htmlspecialchars($row['genre_name']); ?> <small class="text-muted">(<?php echo $row['genre_id']; ?>)</small></td>
-                                    <td>
-                                        <div class="progress bg-dark" style="height: 6px; width: 60px; border: 1px solid rgba(255,255,255,0.1);">
-                                            <div class="progress-bar bg-purple" style="width: <?php echo $row['weight']; ?>%"></div>
-                                        </div>
-                                        <span class="x-small fw-700 text-white-50"><?php echo $row['weight']; ?>%</span>
-                                    </td>
                                     <td class="text-end">
                                         <button class="btn btn-sm btn-dark text-purple border-secondary" onclick="testMapping('<?php echo addslashes($row['mood_name']); ?>', <?php echo $row['genre_id']; ?>)"><i class="bi bi-play-circle-fill"></i> TEST</button>
                                         <form action="movies.php" method="POST" class="d-inline">
