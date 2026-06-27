@@ -174,10 +174,6 @@ if ($pdo) {
                             <?php echo $tmdb_online ? 'STABLE' : 'UNSTABLE'; ?>
                         </span>
                     </div>
-                    <div class="health-item">
-                        <span class="health-label">Server Memory</span>
-                        <span class="health-status status-ok">12% USE</span>
-                    </div>
                 </div>
             </div>
         </div>
