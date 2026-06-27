@@ -1,0 +1,23 @@
+4.5 Database Design
+
+The database design for the MoodAI system was developed using an Entity-Relationship (ER) diagram to ensure that the data is stored in an organised and efficient manner. The database consists of eight main tables that handle everything from user accounts to movie caching and system configurations. By using a relational database approach, the system maintains data integrity and allows for complex queries to retrieve user history and favourites quickly.
+
+Table 4.1: Database Tables and their Attributes
+
+1. Users Table: This table stores the basic information of all registered users. It includes attributes such as user_id (Primary Key), username, email, and password. The passwords are stored as hashed values to ensure security.
+
+2. Admin Table: This table is used for managing administrator access to the system. It contains admin_id (Primary Key), username, and password. This table is separate from the regular users table to provide a higher level of security for system settings.
+
+3. User Mood History Table: This table tracks every mood detection event performed by the users. It includes id (Primary Key), user_id (Foreign Key), mood name, input type (face, voice, or text), and the timestamp of the detection.
+
+4. User Favourites Table: This table allows users to save their preferred movies. It contains id (Primary Key), user_id (Foreign Key), tmdb_movie_id, movie_title, movie_poster, and the mood tag associated with the recommendation.
+
+5. Cached Movies Table: To ensure the system works offline, this table stores movie data fetched from the TMDB API. It includes attributes like tmdb_id, title, overview, poster path, vote average, and genre_id.
+
+6. Mood Definitions Table: This table defines the core moods supported by the system. It consists of id (Primary Key) and mood_name (Happy, Sad, Angry, Excited, Neutral).
+
+7. Mood-to-Genre Mapping Table: This table maps each mood to a specific movie genre. It includes id (Primary Key), mood_id (Foreign Key), mood_name, genre_id, and genre_name.
+
+8. System Settings Table: This table stores global configurations for the application. It includes setting_key (Primary Key) and setting_value, allowing the admin to update the site name or TMDB API key dynamically.
+
+The relationships between these tables are designed to support the system functionality. The Users table has a one-to-many relationship with both the Mood History and User Favourites tables, meaning one user can have multiple history records and saved movies. The Mood Definitions table is linked to the Mood-to-Genre Mapping table to identify which genre belongs to which emotional state. These connections ensure that the system can accurately retrieve recommendations based on the user identity and their current mood.
