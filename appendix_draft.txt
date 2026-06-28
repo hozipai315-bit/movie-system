@@ -1,0 +1,122 @@
+APPENDIX A — Installation and Setup Guide
+
+The installation and setup process for the MoodAI system requires several hardware and software components to ensure smooth operation. To run the platform effectively, the user needs a computer with the Windows operating system and at least 8GB of random-access memory. A working webcam and a functional microphone are also necessary for the facial and voice emotion detection features. For software, the system requires XAMPP for managing the web server and the database, Python 3.12 for the artificial intelligence backend, and a modern web browser like Google Chrome or Mozilla Firefox to access the user interface.
+
+The first step in the installation is to set up the XAMPP environment. The user should download the XAMPP installer from the official website and follow the setup instructions. Once the installation is complete, the XAMPP Control Panel should be opened to start the Apache and MySQL services. After starting these services, the entire PHP project folder must be copied and pasted into the htdocs directory, which is usually found within the XAMPP installation folder on the C drive. This allows the local server to recognise and serve the application files to the browser.
+
+The next step involves importing the system database using phpMyAdmin. The user should open their web browser and navigate to the local host address for phpMyAdmin. A new database named movie_system must be created to hold the application data. Once the database is created, the user should select the import tab and choose the movie_system.sql file provided in the project folder. After the import process is finished, the user should confirm that all eight database tables, including users, admins, and history, have been successfully created and are ready for use.
+
+After setting up the database, the Python requirements must be installed for the AI backend. The user needs to open the command prompt and navigate to the directory where the Python backend files are stored. By running the pip install command for the requirements text file, all the necessary libraries will be downloaded and installed. These libraries include Flask for the API, DeepFace for face detection, and Faster-Whisper for voice transcription. The user must wait for all these dependencies to install completely before proceeding to the next part of the setup.
+
+The configuration of the system settings is the fifth step. The user should open the configuration file located in the includes folder of the PHP backend and provide the correct database credentials such as the host name, username, and password. It is also important to add a valid TMDB API key to the system so that movie data can be fetched from the internet. This key can be added through the settings page in the admin panel or by editing the configuration file directly. Proper configuration ensures that the frontend can communicate with both the local database and the external movie API.
+
+The sixth step is to start the Python Flask server to enable the mood detection features. The user should open a separate command prompt window, navigate to the Python backend folder again, and run the main application file using the Python command. Once the server starts, it will listen for requests on port 5000. It is essential to keep this terminal window open at all times while using the system, as closing it will stop the AI services from working. The server provides the necessary routes for processing biometric data and returning the emotional state of the user.
+
+Finally, the user can access the completed system through their web browser. By entering the correct local host URL for the project, the home page will load, and the user can choose to register a new account or log in using the guest feature. Once access is granted, the user can select any of the three mood detection methods to identify their current feelings. After the mood is detected, the system will suggest a list of movies that match the results. This final step confirms that all parts of the project are correctly installed and integrated.
+
+APPENDIX C — Code Snippets
+
+The following section presents the key code snippets from the MoodAI project to illustrate the core logic and technical implementation. These examples cover the backend routing, biometric analysis, and the recommendation fallback mechanism used in the system.
+
+Snippet 1 — app.py Flask Routes
+
+The main entry point for the Python backend defines several REST API routes to handle different types of mood detection and genre retrieval. These endpoints allow the PHP frontend to send biometric data and receive the identified emotional state in a structured format.
+
+```python
+@app.route('/detect/text', methods=['POST'])
+def analyse_text():
+    # Logic for text sentiment analysis
+
+@app.route('/detect/face', methods=['POST'])
+def analyse_face():
+    # Logic for facial expression detection
+
+@app.route('/detect/voice', methods=['POST'])
+def analyse_voice():
+    # Logic for hybrid voice analysis
+
+@app.route('/genre', methods=['GET'])
+def get_genre():
+    # Logic for retrieving genre mapping
+```
+
+Snippet 2 — text_emotion.py Analysis Logic
+
+The text analysis module uses a combination of dictionary-based scoring and natural language processing to identify the emotional tone of user input. It handles linguistic nuances such as negations and intensifiers to improve the accuracy of the detected mood.
+
+```python
+def detect_mood_level2(text):
+    blob = TextBlob(text)
+    # Process intensifiers and negations
+    for intensifier, value in INTENSIFIERS.items():
+        if intensifier in context:
+            local_multiplier *= value
+
+    # Scoring against Happy, Sad, Angry, and Excited dictionaries
+    for mood_name, mood_dict in all_moods.items():
+        if lemma in mood_dict:
+            score = mood_dict[lemma] * local_multiplier
+            mood_scores[mood_name] += score
+
+    return polarity, subjectivity, detected_mood, mood_scores
+```
+
+Snippet 3 — facial_emotion.py Face Detection
+
+The facial emotion module uses the DeepFace library with a reliable backend for identifying faces within video frames. It captures the largest face in the frame to ensure focus on the primary user and then maps the detected emotion to the system's standard categories.
+
+```python
+def detect_face_mood(image_data):
+    # Decode Base64 and analyse using DeepFace
+    results = DeepFace.analyse(
+        img_path=img,
+        actions=['emotion'],
+        enforce_detection=True,
+        detector_backend='ssd'
+    )
+
+    # Selection of the largest face and mood mapping
+    dominant_emotion = selected_result['dominant_emotion']
+    final_mood = mood_map.get(dominant_emotion, "Neutral")
+    return final_mood, emotion_scores
+```
+
+Snippet 4 — voice_emotion.py Hybrid Calculation
+
+The voice detection system implements a hybrid approach that combines speech transcription with acoustic feature analysis. It calculates a final emotional state by assigning specific weights to the sentiment of the transcribed text and the tone of the user's voice.
+
+```python
+def detect_voice_mood(audio_file_path):
+    # Transcription via Faster-Whisper
+    segments, info = model.transcribe(wav_path, beam_size=5)
+
+    # Audio feature analysis via Librosa (energy and pitch)
+    rms = librosa.feature.rms(y=y)[0]
+
+    # Weighted Hybrid (70% text sentiment, 30% voice tone)
+    mood_votes[text_mood] += 0.70
+    mood_votes[tone_mood] += tone_intensity * 0.30
+
+    return final_mood, transcribed_text, mood_votes
+```
+
+Snippet 5 — mood_mapper.php Fallback Mechanism
+
+The PHP frontend includes a resilient mapping function that ensures movie genres are always retrieved for the detected mood. It implements a three-tier priority system that checks the local database first, followed by the Python API, and finally a local configuration file.
+
+```php
+function get_genre_id_for_mood($mood) {
+    // Tier 1: Check MySQL Database mappings
+    $stmt = $pdo->prepare("SELECT genre_id FROM mood_genre_mapping WHERE mood_name = ?");
+    $db_genre = $stmt->fetchColumn();
+    if ($db_genre) return (int)$db_genre;
+
+    // Tier 2: Call Python AI Service Sync
+    $response = curl_exec($ch);
+    if ($http_code === 200) return (int)$data['genre_id'];
+
+    // Tier 3: Local JSON Fallback File
+    $json_data = json_decode(file_get_contents('mood_genre_fallback.json'), true);
+    return $json_data[$mood] ?? 35;
+}
+```
