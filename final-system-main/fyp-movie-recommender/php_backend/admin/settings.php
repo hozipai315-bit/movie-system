@@ -12,14 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
             $site_name = $_POST['site_name'] ?? 'MoodAI';
             $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
                                    VALUES ('site_name', :site_name)
-                                   ON DUPLICATE KEY UPDATE setting_value = :site_name");
+                                   ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)");
             $stmt->execute(['site_name' => $site_name]);
             $message = "Site name updated successfully.";
         } elseif ($action === 'update_api_key') {
             $api_key = $_POST['tmdb_api_key'] ?? '';
             $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
                                    VALUES ('tmdb_api_key', :api_key)
-                                   ON DUPLICATE KEY UPDATE setting_value = :api_key");
+                                   ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)");
             $stmt->execute(['api_key' => $api_key]);
             $message = "API key updated successfully.";
         }
