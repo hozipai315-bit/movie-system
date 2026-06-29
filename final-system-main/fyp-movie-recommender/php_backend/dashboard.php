@@ -46,7 +46,7 @@ try {
 }
 
 require_once 'includes/header.php';
-set_page_title("MoodAI | Your Dashboard");
+set_page_title(SITE_NAME . " | Your Dashboard");
 ?>
 <link rel="stylesheet" href="assets/css/dashboard.css">
 

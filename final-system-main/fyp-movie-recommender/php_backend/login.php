@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodAI | Secure Login</title>
+    <title><?php echo htmlspecialchars(defined("SITE_NAME") ? SITE_NAME : "MoodAI"); ?> | Secure Login</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="login-card animate-slide-up">
         <div class="text-start mb-4">
-            <h4 class="fw-bold mb-1 logo-text">MoodAI<span>.</span></h4>
+            <h4 class="fw-bold mb-1 logo-text"><?php echo htmlspecialchars(defined("SITE_NAME") ? SITE_NAME : "MoodAI"); ?><span>.</span></h4>
         </div>
         
         <h2 class="login-title text-white">Welcome Back</h2>

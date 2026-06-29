@@ -10,7 +10,7 @@ $admin_username = $_SESSION['admin_username'] ?? 'Admin';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodAI | Admin Dashboard</title>
+    <title><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?> | Admin Dashboard</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@ $admin_username = $_SESSION['admin_username'] ?? 'Admin';
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3 admin-navbar-animated">
         <div class="container">
             <a class="navbar-brand fw-800 animate-brand" href="dashboard.php">
-                MoodAI<span>.</span>ADMIN
+                <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span>ADMIN
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
                 <span class="navbar-toggler-icon"></span>

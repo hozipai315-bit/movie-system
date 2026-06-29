@@ -129,7 +129,7 @@ $current_api_key = $settings['tmdb_api_key'] ?? TMDB_API_KEY;
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="small opacity-50 text-white-50">Server Engine</span>
-                        <span class="fw-700 text-white">MoodAI Neural-S1</span>
+                        <span class="fw-700 text-white"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?> Neural-S1</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="small opacity-50 text-white-50">Database Connection</span>

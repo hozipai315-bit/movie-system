@@ -43,7 +43,7 @@ if (empty($marquee_movies)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodAI | Premium Mood-Based Movie Recommendations</title>
+    <title><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?> | Premium Mood-Based Movie Recommendations</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +65,7 @@ if (empty($marquee_movies)) {
     <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                Mood<span>AI</span>.
+                <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -106,7 +106,7 @@ if (empty($marquee_movies)) {
                         <span class="section-tag hero-tag">Movies for Your Mood</span>
                         <h1 class="hero-title-text">Your Emotions,<br>Our AI Tool.</h1>
                         <p class="lead hero-lead mb-5">
-                            Experience a movie journey tailored to you. MoodAI uses smart AI to find the perfect movie for you based on how you feel.
+                            Experience a movie journey tailored to you. <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?> uses smart AI to find the perfect movie for you based on how you feel.
                         </p>
                         <div class="d-flex flex-column flex-sm-row">
                             <button type="button" class="btn btn-hero-primary btn-lg me-sm-3 mb-3 mb-sm-0" data-bs-toggle="modal" data-bs-target="#registerModal">Find My Mood</button>
@@ -245,7 +245,7 @@ if (empty($marquee_movies)) {
                 <div class="row align-items-center">
                     <div class="col-lg-7">
                         <span class="section-tag">Why Us</span>
-                        <h2 class="mb-4">Why Choose MoodAI?</h2>
+                        <h2 class="mb-4">Why Choose <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?>?</h2>
                         <div class="mb-4">
                             <h5 class="text-white"><i class="bi bi-shield-check text-danger me-2"></i> Precision Driven</h5>
                             <p class="text-muted small">We don't just guess. We analyze high-fidelity data points to ensure accuracy.</p>
@@ -283,11 +283,11 @@ if (empty($marquee_movies)) {
     <!-- Footer -->
     <footer class="footer mt-auto py-5 text-center">
         <div class="container">
-            <h5 class="fw-bold mb-3" style="color: var(--text-white); letter-spacing: -0.5px;">Mood<span style="color: var(--accent-red);">AI</span>.</h5>
+            <h5 class="fw-bold mb-3" style="color: var(--text-white); letter-spacing: -0.5px;"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span></h5>
             <p class="small mb-4 animate-reveal" style="color: var(--text-white); opacity: 0.8;">Redefining movie discovery through the lens of high-fidelity neural intelligence and human-centric emotional mapping.</p>
             <hr class="my-4 border-dark" style="opacity: 0.1;">
             <div class="small animate-reveal" style="color: var(--text-white); opacity: 0.6;">
-                &copy; <?php echo date("Y"); ?> MoodAI.
+                &copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?>.
             </div>
         </div>
     </footer>
@@ -302,7 +302,7 @@ if (empty($marquee_movies)) {
                 </div>
                 <div class="modal-body p-4 pt-0">
                     <div class="text-start mb-4">
-                        <h4 class="fw-bold mb-1 logo-text">MoodAI<span>.</span></h4>
+                        <h4 class="fw-bold mb-1 logo-text"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span></h4>
                     </div>
 
                     <h2 class="login-title text-white">Welcome Back</h2>
@@ -353,7 +353,7 @@ if (empty($marquee_movies)) {
                 </div>
                 <div class="modal-body p-4 pt-0">
                     <div class="text-start mb-4">
-                        <h4 class="fw-bold mb-1 logo-text">MoodAI<span>.</span></h4>
+                        <h4 class="fw-bold mb-1 logo-text"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span></h4>
                     </div>
 
                     <h2 class="register-title text-white">Join Us</h2>
