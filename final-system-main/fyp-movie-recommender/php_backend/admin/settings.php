@@ -3,24 +3,28 @@
 require_once 'include/header.php';
 
 $message = '';
+$error = '';
+$action = $_POST['action'] ?? '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo) {
-    $site_name = $_POST['site_name'] ?? 'MoodAI';
-    $api_key = $_POST['tmdb_api_key'] ?? '';
-
     try {
-        $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
-                               VALUES ('site_name', :site_name)
-                               ON DUPLICATE KEY UPDATE setting_value = :site_name");
-        $stmt->execute(['site_name' => $site_name]);
-
-        $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
-                               VALUES ('tmdb_api_key', :api_key)
-                               ON DUPLICATE KEY UPDATE setting_value = :api_key");
-        $stmt->execute(['api_key' => $api_key]);
-
-        $message = "System parameters updated successfully. Reloading core configurations.";
+        if ($action === 'update_site_name') {
+            $site_name = $_POST['site_name'] ?? 'MoodAI';
+            $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
+                                   VALUES ('site_name', :site_name)
+                                   ON DUPLICATE KEY UPDATE setting_value = :site_name");
+            $stmt->execute(['site_name' => $site_name]);
+            $message = "Site name updated successfully.";
+        } elseif ($action === 'update_api_key') {
+            $api_key = $_POST['tmdb_api_key'] ?? '';
+            $stmt = $pdo->prepare("INSERT INTO system_settings (setting_key, setting_value)
+                                   VALUES ('tmdb_api_key', :api_key)
+                                   ON DUPLICATE KEY UPDATE setting_value = :api_key");
+            $stmt->execute(['api_key' => $api_key]);
+            $message = "API key updated successfully.";
+        }
     } catch (Exception $e) {
-        $message = "System Error: " . $e->getMessage();
+        $error = "System Error: " . $e->getMessage();
     }
 }
 
@@ -56,40 +60,65 @@ $current_api_key = $settings['tmdb_api_key'] ?? TMDB_API_KEY;
         </div>
     <?php endif; ?>
 
+    <?php if ($error): ?>
+        <div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert" style="background: rgba(220, 53, 69, 0.1); border-color: #dc3545; color: #fff;">
+            <i class="bi bi-exclamation-triangle-fill me-2 text-danger"></i> <?php echo htmlspecialchars($error); ?>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
     <div class="row g-4">
-        <div class="col-lg-6" data-aos="fade-right">
-            <div class="dashboard-card h-100">
-                <h5 class="card-title-admin mb-4"><i class="bi bi-gear-fill"></i> Core Configuration</h5>
-                <form action="settings.php" method="POST">
-
-                    <div class="mb-4">
-                        <label class="form-label fw-700 small opacity-50 text-white">PLATFORM BRAND NAME</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-dark border-secondary text-purple"><i class="bi bi-type"></i></span>
-                            <input type="text" name="site_name" class="form-control border-secondary bg-dark text-white py-2" value="<?php echo htmlspecialchars($current_site_name); ?>" placeholder="MoodAI">
-                        </div>
-                        <div class="form-text x-small text-white-50">This name appears in the navigation bar and page titles.</div>
+        <div class="col-lg-6">
+            <div class="row g-4">
+                <!-- Section 1: Site Name -->
+                <div class="col-12" data-aos="fade-right">
+                    <div class="dashboard-card">
+                        <h5 class="card-title-admin mb-4"><i class="bi bi-type"></i> Platform Brand Name</h5>
+                        <form action="settings.php" method="POST">
+                            <input type="hidden" name="action" value="update_site_name">
+                            <div class="mb-4">
+                                <label class="form-label fw-700 small opacity-50 text-white text-uppercase">Site Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-purple"><i class="bi bi-fonts"></i></span>
+                                    <input type="text" name="site_name" class="form-control border-secondary bg-dark text-white py-2" value="<?php echo htmlspecialchars($current_site_name); ?>" placeholder="MoodAI" required>
+                                </div>
+                                <div class="form-text x-small text-white-50">This name appears in the navigation bar and page titles.</div>
+                            </div>
+                            <div class="pt-2">
+                                <button type="submit" class="btn btn-primary-admin fw-800 w-100 py-3 rounded-pill shadow-sm text-uppercase">
+                                    <i class="bi bi-shield-check me-2"></i> Update Site Name
+                                </button>
+                            </div>
+                        </form>
                     </div>
+                </div>
 
-                    <div class="mb-4">
-                        <label class="form-label fw-700 small opacity-50 text-white">TMDB API VERSION 3 KEY</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-dark border-secondary text-purple"><i class="bi bi-key-fill"></i></span>
-                            <input type="text" name="tmdb_api_key" class="form-control border-secondary bg-dark text-white py-2" value="<?php echo htmlspecialchars($current_api_key); ?>" placeholder="Enter API Key">
-                        </div>
-                        <div class="form-text x-small text-white-50">Required for movie fetching and metadata retrieval.</div>
+                <!-- Section 2: TMDB API Key -->
+                <div class="col-12" data-aos="fade-right" data-aos-delay="100">
+                    <div class="dashboard-card">
+                        <h5 class="card-title-admin mb-4"><i class="bi bi-key-fill"></i> TMDB API Key</h5>
+                        <form action="settings.php" method="POST">
+                            <input type="hidden" name="action" value="update_api_key">
+                            <div class="mb-4">
+                                <label class="form-label fw-700 small opacity-50 text-white text-uppercase">TMDB API VERSION 3 KEY</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-purple"><i class="bi bi-plug-fill"></i></span>
+                                    <input type="text" name="tmdb_api_key" class="form-control border-secondary bg-dark text-white py-2" value="<?php echo htmlspecialchars($current_api_key); ?>" placeholder="Enter API Key" required>
+                                </div>
+                                <div class="form-text x-small text-white-50">Required for movie fetching and metadata retrieval.</div>
+                            </div>
+                            <div class="pt-2">
+                                <button type="submit" class="btn btn-primary-admin fw-800 w-100 py-3 rounded-pill shadow-sm text-uppercase">
+                                    <i class="bi bi-shield-check me-2"></i> Update API Key
+                                </button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="pt-2">
-                        <button type="submit" class="btn btn-primary-admin fw-800 w-100 py-3 rounded-pill shadow-sm">
-                            <i class="bi bi-shield-check me-2"></i> COMMIT CHANGES
-                        </button>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
 
+        <!-- Right Side: Environment Info -->
         <div class="col-lg-6" data-aos="fade-left">
             <div class="dashboard-card h-100">
                 <h5 class="card-title-admin mb-4 text-white"><i class="bi bi-info-circle text-purple"></i> Environment Info</h5>
