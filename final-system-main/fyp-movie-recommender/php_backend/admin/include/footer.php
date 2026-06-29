@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row py-5">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <div class="footer-brand mb-3">MoodAI<span>.</span>ADMIN</div>
+                    <div class="footer-brand mb-3"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span>ADMIN</div>
                     <p class="footer-desc">The main control center for mood mapping and movie data. Helping admins manage users and system settings easily.</p>
                 </div>
                 <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
@@ -38,7 +38,7 @@
             <div class="footer-bottom py-4">
                 <div class="row align-items-center">
                     <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-0">&copy; <?php echo date('Y'); ?> MoodAI. Admin Control Center.</p>
+                        <p class="mb-0">&copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?>. Admin Control Center.</p>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <p class="mb-0">Version 2.4.0 | Security: High</p>

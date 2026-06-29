@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodAI | Admin Control Center</title>
+    <title><?php echo htmlspecialchars(defined("SITE_NAME") ? SITE_NAME : "MoodAI"); ?> | Admin Control Center</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Left Side: Login Form -->
         <div class="login-form-side" data-aos="fade-right" data-aos-duration="1000">
             <div class="form-wrapper">
-                <div class="admin-logo">MoodAI<span>.</span>ADMIN</div>
+                <div class="admin-logo"><?php echo htmlspecialchars(defined("SITE_NAME") ? SITE_NAME : "MoodAI"); ?><span>.</span>ADMIN</div>
                 <h2 class="admin-login-title">Control Center</h2>
                 <p class="admin-login-subtitle">Initialize administrative session.</p>
 

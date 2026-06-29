@@ -112,7 +112,7 @@ $visual = $mood_visuals[ucfirst(strtolower($last_detected_mood))] ?? ($mood_visu
 
 // --- Include UI Components ---
 require_once 'includes/header.php';
-set_page_title("Recommended Movies - MoodAI Rec.");
+set_page_title("Recommended Movies - " . SITE_NAME);
 ?>
 
 <link rel="stylesheet" href="assets/css/recommendation.css">

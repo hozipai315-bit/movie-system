@@ -16,7 +16,7 @@ if (!$user_id || !$last_detected_mood) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodAI | Analyzing Neural Signal...</title>
+    <title><?php echo htmlspecialchars(defined("SITE_NAME") ? SITE_NAME : "MoodAI"); ?> | Analyzing Neural Signal...</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

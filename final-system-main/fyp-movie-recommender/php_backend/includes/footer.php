@@ -3,11 +3,11 @@
 ?>
     <footer class="footer mt-auto py-5 text-center">
         <div class="container">
-            <h5 class="fw-bold mb-3" style="color: var(--text-white); letter-spacing: -0.5px;"><?php echo htmlspecialchars(SITE_NAME); ?>.</h5>
+            <h5 class="fw-bold mb-3" style="color: var(--text-white); letter-spacing: -0.5px;"><?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span></h5>
             <p class="small mb-4 animate-reveal" style="color: var(--text-white); opacity: 0.8;">Redefining movie discovery through the lens of high-fidelity neural intelligence and human-centric emotional mapping.</p>
             <hr class="my-4 border-dark" style="opacity: 0.1;">
             <div class="small animate-reveal" style="color: var(--text-white); opacity: 0.6;">
-                &copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars(SITE_NAME); ?>.
+                &copy; <?php echo date("Y"); ?> <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?>.
             </div>
         </div>
     </footer>

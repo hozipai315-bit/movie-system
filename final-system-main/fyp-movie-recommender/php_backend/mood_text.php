@@ -5,7 +5,7 @@ session_start();
 require_once 'includes/config.php';
 require_once 'database/connection.php';
 require_once 'includes/header.php';
-set_page_title("MoodAI | Semantic Analysis Unit");
+set_page_title(SITE_NAME . " | Semantic Analysis Unit");
 
 $user_id = $_SESSION['user_id'] ?? null;
 $user_name = $_SESSION['username'] ?? 'Operative';

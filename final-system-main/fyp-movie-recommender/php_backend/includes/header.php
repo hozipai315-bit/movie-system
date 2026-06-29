@@ -53,7 +53,7 @@ if (!$is_guest) {
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="dashboard.php">
-                <?php echo htmlspecialchars(SITE_NAME); ?>.
+                <?php echo htmlspecialchars(defined('SITE_NAME') ? SITE_NAME : 'MoodAI'); ?><span>.</span>
             </a>
 
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
